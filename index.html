@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulaziz | Links</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons (Cleaner, modern icons similar to standard app UIs) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // We can toggle it via script or matchMedia
+            theme: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                },
+                extend: {
+                    colors: {
+                        theme: {
+                            50: '#F9FAFB',
+                            100: '#F3F4F6',
+                            200: '#E5E7EB',
+                            800: '#1F2937',
+                            900: '#111827',
+                            950: '#030712'
+                        },
+                        card: {
+                            light: '#FFFFFF',
+                            lightHover: '#F9FAFB',
+                            lightBorder: '#E5E7EB',
+
+                            dark: '#1F2937',
+                            darkHover: '#374151',
+                            darkBorder: '#374151'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.025)',
+                        'soft-dark': '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            /* Smooth background transitions */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Premium Scale Effect */
+        .link-card {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+            will-change: transform;
+        }
+
+        .link-card:hover {
+            transform: scale(1.02);
+            /* z-index bump is handled in Tailwind utility classes */
+        }
+
+        .link-card:active {
+            transform: scale(0.98);
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        /* Toast Animation */
+        @keyframes slideUpFade {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, 20px) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(1);
+            }
+        }
+
+        @keyframes slideDownFade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, 20px) scale(0.95);
+            }
+        }
+
+        .toast-enter {
+            animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .toast-exit {
+            animation: slideDownFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Verified Checkmark specific */
+        .verified-badge {
+            color: #3B82F6;
+            /* Standard pleasant blue */
+        }
+    </style>
+</head>
+<!-- Default to light mode, user can toggle based on system or button -->
+
+<body
+    class="bg-[#F3F4F6] text-theme-900 dark:bg-theme-950 dark:text-gray-100 min-h-screen relative flex flex-col items-center pb-20">
+
+    <!-- Theme / Share Header -->
+    <div class="w-full max-w-[680px] px-6 pt-6 flex justify-end gap-3 z-50 absolute top-0">
+        <button id="themeToggle"
+            class="w-10 h-10 rounded-full bg-white dark:bg-card-dark border border-card-lightBorder dark:border-card-darkBorder flex items-center justify-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white shadow-sm transition-all hover:shadow-md"
+            aria-label="Toggle Theme">
+            <i class="ph ph-moon text-xl block dark:hidden"></i>
+            <i class="ph ph-sun text-xl hidden dark:block"></i>
+        </button>
+        <button id="shareBtn"
+            class="px-4 py-2 rounded-full bg-white dark:bg-card-dark border border-card-lightBorder dark:border-card-darkBorder flex items-center justify-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white shadow-sm transition-all hover:shadow-md"
+            aria-label="Share Link">
+            <i class="ph ph-share-network text-lg"></i>
+            <span>Share</span>
+        </button>
+    </div>
+
+    <!-- Main Container (Linktree optimal width is usually around 680px) -->
+    <main class="w-full max-w-[680px] px-4 sm:px-6 pt-24 sm:pt-28 flex flex-col items-center flex-grow">
+
+        <!-- Profile Section -->
+        <header class="flex flex-col items-center w-full mb-8">
+            <!-- Avatar -->
+            <div class="relative mb-5">
+                <div
+                    class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm bg-gray-100 dark:bg-gray-800">
+                    <img id="avatar" src="" alt="Profile picture" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Title & Verification -->
+            <div class="flex items-center gap-1.5 justify-center mb-1.5">
+                <h1 id="name" class="text-xl sm:text-[22px] font-bold tracking-tight text-gray-900 dark:text-white">
+                </h1>
+                <i id="verifiedBadge" class="ph-fill ph-seal-check text-[20px] verified-badge"
+                    title="Verified Creator"></i>
+            </div>
+
+            <!-- Bio -->
+            <p id="bio"
+                class="text-[15px] sm:text-[16px] text-gray-500 dark:text-gray-400 text-center max-w-md leading-relaxed">
+            </p>
+        </header>
+
+        <!-- Links Container -->
+        <nav id="links-container" class="w-full flex flex-col gap-3.5 mb-10 mt-2">
+            <!-- Buttons injected via JS -->
+        </nav>
+
+        <!-- Social Media Row -->
+        <div id="social-container"
+            class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 mt-4 opacity-90 pb-6">
+            <!-- Icons injected via JS -->
+        </div>
+
+    </main>
+
+    <!-- Branding (Optional footer signature) -->
+    <div
+        class="absolute bottom-6 font-semibold text-[13px] tracking-wide text-gray-400 dark:text-gray-500 flex items-center gap-1.5 opacity-60">
+        <i class="ph-fill ph-lightning"></i> LinkHub
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast"
+        class="fixed bottom-10 left-1/2 -translate-x-1/2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-[14px] font-medium px-5 py-3 rounded-full flex items-center gap-3 shadow-lg z-50 pointer-events-none opacity-0 hidden">
+        <i class="ph-fill ph-check-circle text-green-500 text-lg"></i>
+        <span>Link copied to clipboard!</span>
+    </div>
+
+    <script>
+        // --- 1. Central Data Config ---
+        const config = {
+            profile: {
+                name: "Abdulaziz",
+                verified: true,
+                bio: "Software Engineer & Designer. Building digital products with clean code and minimalist interfaces.",
+                avatarUrl: "./profile.jpg?v=2"
+            },
+            links: [
+                {
+                    title: "Portfolio & Case Studies",
+                    subtitle: "My recent development projects",
+                    url: "https://t.me/abdulazeez_ai",
+                    icon: "ph ph-briefcase",
+                    // Empty color class delegates to standard text color
+                    iconColorClass: ""
+                },
+                {
+                    title: "GitHub Profile",
+                    subtitle: "Open source contributions",
+                    url: "https://github.com/Sukhrobjonov02",
+                    icon: "ph ph-github-logo",
+                    iconColorClass: ""
+                },
+                {
+                    title: "Support my work",
+                    subtitle: "Buy me a coffee",
+                    url: "https://buymeacoffee.com/sukhrobjonov02",
+                    icon: "ph ph-coffee",
+                    highlight: true // Applies a subtle distinct styling
+                }
+            ],
+            socials: [
+                { platform: "Telegram", url: "https://t.me/Sukhrobjonov02", icon: "ph ph-telegram-logo" },
+                { platform: "LinkedIn", url: "https://www.linkedin.com/in/sukhrobjonov02/", icon: "ph ph-linkedin-logo" },
+                { platform: "Email", url: "mailto:sukhrobjonov02@gmail.com", icon: "ph ph-envelope-simple" }
+            ]
+        };
+
+        // --- 2. Theme Management ---
+        const themeToggle = document.getElementById('themeToggle');
+
+        // Auto-detect system preference or previous setting
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // --- 3. DOM Population ---
+        const populateUI = () => {
+            // Setup Profile
+            const avatarImg = document.getElementById('avatar');
+            avatarImg.src = config.profile.avatarUrl;
+            // Since we previously applied a CSS crop to this specific image via style attributes, we need to ensure the image looks okay. By default it is just object-cover. If it's a raw uncropped photo, object-position can be added here if needed, but object-cover is universally safer.
+
+            // Re-apply the specific crop formatting if it was preferred:
+            // avatarImg.style.objectPosition = "center 25%";
+            // avatarImg.style.transform = "scale(1.6)";
+
+            document.getElementById('name').textContent = config.profile.name;
+
+            if (!config.profile.verified) {
+                document.getElementById('verifiedBadge').style.display = 'none';
+            }
+
+            document.getElementById('bio').textContent = config.profile.bio;
+
+            // Setup Links
+            const linksContainer = document.getElementById('links-container');
+            config.links.forEach((link, index) => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+
+                // Professional Card Styling
+                // Default vs Highlighted styling
+                const bgClasses = link.highlight
+                    ? "bg-gray-900 border-gray-900 dark:bg-white dark:border-white text-white dark:text-gray-900"
+                    : "bg-card-light hover:bg-card-lightHover border-card-lightBorder dark:bg-card-dark dark:hover:bg-card-darkHover dark:border-card-darkBorder text-gray-900 dark:text-white";
+
+                const titleColor = link.highlight
+                    ? (document.documentElement.classList.contains('dark') ? "text-gray-900" : "text-white")
+                    : "text-gray-900 dark:text-gray-100";
+
+                const subtitleColor = link.highlight
+                    ? "text-gray-300 dark:text-gray-500"
+                    : "text-gray-500 dark:text-gray-400";
+
+                a.className = `link-card flex items-center justify-between p-[18px] sm:py-4 px-5 rounded-[20px] md:rounded-[24px] border shadow-sm dark:shadow-soft-dark shadow-soft w-full relative z-10 hover:z-20 ${bgClasses} group outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900 dark:focus-visible:ring-white`;
+
+                // Sub-container for Icon and Text
+                const leftContent = document.createElement('div');
+                leftContent.className = 'flex items-center gap-4 pr-4 w-full';
+
+                // Ensure icon exists
+                if (link.icon) {
+                    const iconWrap = document.createElement('div');
+                    iconWrap.className = 'flex-shrink-0 flex items-center justify-center';
+
+                    const i = document.createElement('i');
+                    i.className = `${link.icon} text-[24px] ${link.iconColorClass || (link.highlight ? '' : 'text-gray-700 dark:text-gray-300')} group-hover:scale-110 transition-transform duration-300`;
+                    iconWrap.appendChild(i);
+                    leftContent.appendChild(iconWrap);
+                }
+
+                // Text (Title & Subtitle)
+                const textWrap = document.createElement('div');
+                textWrap.className = 'flex flex-col text-left overflow-hidden';
+
+                const title = document.createElement('h3');
+                title.className = `font-semibold text-[15px] sm:text-[16px] leading-tight mb-[3px] truncate ${titleColor}`;
+                title.textContent = link.title;
+                textWrap.appendChild(title);
+
+                if (link.subtitle) {
+                    const sub = document.createElement('span');
+                    sub.className = `text-[13px] font-medium truncate ${subtitleColor}`;
+                    sub.textContent = link.subtitle;
+                    textWrap.appendChild(sub);
+                }
+
+                leftContent.appendChild(textWrap);
+
+                // Right arrow (or ellipsis) - standard professional linktree UI
+                const rightContent = document.createElement('div');
+                rightContent.className = 'flex-shrink-0 text-gray-400 dark:text-gray-500 transition-transform duration-300 group-hover:translate-x-1';
+
+                const arrowIcon = document.createElement('i');
+                arrowIcon.className = "ph ph-caret-right text-[20px]";
+                if (link.highlight) {
+                    arrowIcon.classList.remove('text-gray-400');
+                    arrowIcon.classList.add('opacity-80');
+                }
+
+                rightContent.appendChild(arrowIcon);
+
+                a.appendChild(leftContent);
+                a.appendChild(rightContent);
+                linksContainer.appendChild(a);
+            });
+
+            // Setup Socials
+            const socialContainer = document.getElementById('social-container');
+            config.socials.forEach(social => {
+                const a = document.createElement('a');
+                a.href = social.url;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                a.className = "flex items-center justify-center text-[28px] text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all duration-200 hover:scale-110 active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-lg";
+                a.setAttribute('aria-label', social.platform);
+
+                const icon = document.createElement('i');
+                icon.className = social.icon;
+
+                a.appendChild(icon);
+                socialContainer.appendChild(a);
+            });
+        };
+
+        // --- 4. Share & Toast System ---
+        const shareBtn = document.getElementById('shareBtn');
+        const toast = document.getElementById('toast');
+        let toastTimeout;
+
+        const showToast = () => {
+            clearTimeout(toastTimeout);
+            toast.classList.remove('hidden', 'toast-exit');
+            toast.classList.add('toast-enter');
+
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('toast-enter');
+                toast.classList.add('toast-exit');
+
+                // Hide completely after exit animation
+                setTimeout(() => {
+                    if (toast.classList.contains('toast-exit')) {
+                        toast.classList.add('hidden');
+                    }
+                }, 300);
+            }, 3000);
+        };
+
+        shareBtn.addEventListener('click', async () => {
+            const url = window.location.href;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: `${config.profile.name}'s Links`,
+                        url: url
+                    });
+                } catch (err) {
+                    // Ignore abort errors
+                }
+            } else {
+                try {
+                    await navigator.clipboard.writeText(url);
+                    showToast();
+                } catch (err) {
+                    console.error('Failed to copy', err);
+                }
+            }
+        });
+
+        // Initialize Native
+        document.addEventListener('DOMContentLoaded', populateUI);
+    </script>
+</body>
+
+</html>
