@@ -1,420 +1,391 @@
 <!DOCTYPE html>
-<html lang="en" class="antialiased">
+<html lang="en" class="antialiased dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulaziz | Links</title>
+    <title>Abdulaziz | Personal Link Hub</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter -->
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Outfit (More modern and rounded than Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Phosphor Icons (Cleaner, modern icons similar to standard app UIs) -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
-            darkMode: 'class', // We can toggle it via script or matchMedia
+            darkMode: 'class',
             theme: {
-                fontFamily: {
-                    sans: ['Inter', 'sans-serif'],
-                },
                 extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
                     colors: {
-                        theme: {
-                            50: '#F9FAFB',
-                            100: '#F3F4F6',
-                            200: '#E5E7EB',
-                            800: '#1F2937',
-                            900: '#111827',
-                            950: '#030712'
+                        brand: {
+                            400: '#9b87f5',
+                            500: '#7E69AB',
+                            600: '#6E59A5',
                         },
-                        card: {
-                            light: '#FFFFFF',
-                            lightHover: '#F9FAFB',
-                            lightBorder: '#E5E7EB',
-
-                            dark: '#1F2937',
-                            darkHover: '#374151',
-                            darkBorder: '#374151'
+                        glass: {
+                            light: 'rgba(255, 255, 255, 0.7)',
+                            dark: 'rgba(20, 20, 25, 0.65)',
+                            borderLight: 'rgba(255, 255, 255, 0.5)',
+                            borderDark: 'rgba(255, 255, 255, 0.1)',
                         }
                     },
-                    boxShadow: {
-                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.025)',
-                        'soft-dark': '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'blob-reverse': 'blob-reverse 12s infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        'blob-reverse': {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(-30px, 50px) scale(1.2)' },
+                            '66%': { transform: 'translate(20px, -20px) scale(0.8)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
-                }
-            }
+                },
+            },
         }
     </script>
     <style>
         body {
-            /* Smooth background transitions */
-            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Smooth transitions */
+            transition: background-color 0.5s ease;
         }
 
-        /* Premium Scale Effect */
+        /* Glassmorphism Classes */
+        .glass-panel {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Card Hover Effects */
         .link-card {
-            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 0.2s ease,
-                box-shadow 0.2s ease,
-                border-color 0.2s ease;
-            will-change: transform;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .link-card:hover {
-            transform: scale(1.02);
-            /* z-index bump is handled in Tailwind utility classes */
+            transform: translateY(-6px) scale(1.02);
         }
 
         .link-card:active {
             transform: scale(0.98);
         }
 
-        /* Hide scrollbar */
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
+        /* Animated Gradient Ring for Avatar */
+        .gradient-ring {
+            background: linear-gradient(to right, #9b87f5, #f06292, #64b5f6, #9b87f5);
+            background-size: 300% 300%;
+            animation: ringGlow 4s ease infinite;
         }
 
-        /* Toast Animation */
-        @keyframes slideUpFade {
+        @keyframes ringGlow {
             0% {
-                opacity: 0;
-                transform: translate(-50%, 20px) scale(0.95);
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
             }
 
             100% {
-                opacity: 1;
-                transform: translate(-50%, 0) scale(1);
+                background-position: 0% 50%;
             }
         }
 
-        @keyframes slideDownFade {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, 0) scale(1);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translate(-50%, 20px) scale(0.95);
-            }
+        /* Floating elements setup */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background-color: #f8fafc;
+            /* Light mode bg */
+            transition: background-color 0.5s ease;
         }
 
-        .toast-enter {
-            animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .dark .bg-mesh {
+            background-color: #09090b;
+            /* Dark mode bg */
         }
 
-        .toast-exit {
-            animation: slideDownFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* Toast animation */
+        #toast {
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translate(-50%, 20px) scale(0.9);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
         }
 
-        /* Verified Checkmark specific */
-        .verified-badge {
-            color: #3B82F6;
-            /* Standard pleasant blue */
+        #toast.show {
+            transform: translate(-50%, 0) scale(1);
+            opacity: 1;
+        }
+
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
         }
     </style>
 </head>
-<!-- Default to light mode, user can toggle based on system or button -->
 
-<body
-    class="bg-[#F3F4F6] text-theme-900 dark:bg-theme-950 dark:text-gray-100 min-h-screen relative flex flex-col items-center pb-20">
+<body class="min-h-screen text-slate-800 dark:text-slate-100 selection:bg-brand-500/30 selection:text-brand-500">
 
-    <!-- Theme / Share Header -->
-    <div class="w-full max-w-[680px] px-6 pt-6 flex justify-end gap-3 z-50 absolute top-0">
+    <!-- WOW Background Elements (Animated Blobs) -->
+    <div class="bg-mesh">
+        <!-- Top right blob -->
+        <div
+            class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-400/20 dark:bg-brand-400/20 blur-[80px] animate-blob">
+        </div>
+        <!-- Bottom left blob -->
+        <div
+            class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-400/20 dark:bg-purple-600/20 blur-[100px] animate-blob-reverse">
+        </div>
+        <!-- Center blob -->
+        <div
+            class="absolute top-[30%] left-[20%] w-[400px] h-[400px] rounded-full bg-pink-400/20 dark:bg-pink-600/10 blur-[80px] animate-blob delay-2000">
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="fixed top-6 right-6 flex gap-3 z-50 animate-fade-in-up">
         <button id="themeToggle"
-            class="w-10 h-10 rounded-full bg-white dark:bg-card-dark border border-card-lightBorder dark:border-card-darkBorder flex items-center justify-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white shadow-sm transition-all hover:shadow-md"
-            aria-label="Toggle Theme">
-            <i class="ph ph-moon text-xl block dark:hidden"></i>
-            <i class="ph ph-sun text-xl hidden dark:block"></i>
+            class="flex h-12 w-12 items-center justify-center rounded-full glass-panel bg-white/50 dark:bg-black/40 border border-white/40 dark:border-white/10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white shadow-lg transition-all hover:scale-110 active:scale-95"
+            aria-label="Toggle theme">
+            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+            <i data-lucide="sun" class="h-5 w-5 block dark:hidden"></i>
         </button>
         <button id="shareBtn"
-            class="px-4 py-2 rounded-full bg-white dark:bg-card-dark border border-card-lightBorder dark:border-card-darkBorder flex items-center justify-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white shadow-sm transition-all hover:shadow-md"
-            aria-label="Share Link">
-            <i class="ph ph-share-network text-lg"></i>
+            class="flex h-12 px-5 items-center justify-center gap-2 rounded-full glass-panel bg-white/50 dark:bg-black/40 border border-white/40 dark:border-white/10 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white shadow-lg transition-all hover:scale-110 hover:-translate-y-1 active:scale-95 font-medium">
+            <i data-lucide="share-2" class="h-4 w-4"></i>
             <span>Share</span>
         </button>
     </div>
 
-    <!-- Main Container (Linktree optimal width is usually around 680px) -->
-    <main class="w-full max-w-[680px] px-4 sm:px-6 pt-24 sm:pt-28 flex flex-col items-center flex-grow">
+    <!-- Main Container -->
+    <main class="relative w-full max-w-[580px] px-5 pt-32 pb-20 mx-auto flex flex-col items-center z-10">
 
-        <!-- Profile Section -->
-        <header class="flex flex-col items-center w-full mb-8">
-            <!-- Avatar -->
-            <div class="relative mb-5">
+        <!-- Profile Header -->
+        <header
+            class="flex flex-col items-center text-center mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+            <!-- Avatar with Glow -->
+            <div class="relative mb-6 group">
                 <div
-                    class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm bg-gray-100 dark:bg-gray-800">
-                    <img id="avatar" src="" alt="Profile picture" class="w-full h-full object-cover">
+                    class="absolute -inset-1 rounded-full gradient-ring opacity-70 group-hover:opacity-100 transition duration-500 blur-sm">
+                </div>
+                <div
+                    class="relative h-28 w-28 rounded-full overflow-hidden border-2 border-white dark:border-black bg-slate-200 dark:bg-slate-800 shadow-xl">
+                    <img id="avatar"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        src="" alt="Profile picture">
                 </div>
             </div>
 
-            <!-- Title & Verification -->
-            <div class="flex items-center gap-1.5 justify-center mb-1.5">
-                <h1 id="name" class="text-xl sm:text-[22px] font-bold tracking-tight text-gray-900 dark:text-white">
-                </h1>
-                <i id="verifiedBadge" class="ph-fill ph-seal-check text-[20px] verified-badge"
-                    title="Verified Creator"></i>
+            <div class="flex items-center gap-2 mb-3">
+                <h1 id="name" class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white"></h1>
             </div>
 
-            <!-- Bio -->
-            <p id="bio"
-                class="text-[15px] sm:text-[16px] text-gray-500 dark:text-gray-400 text-center max-w-md leading-relaxed">
+            <p id="bio" class="text-[16px] text-slate-600 dark:text-slate-300 max-w-[440px] leading-relaxed font-light">
             </p>
         </header>
 
-        <!-- Links Container -->
-        <nav id="links-container" class="w-full flex flex-col gap-3.5 mb-10 mt-2">
+        <!-- Links Container (Removed bottom social icons as requested) -->
+        <nav id="links-container" class="w-full flex flex-col gap-4">
             <!-- Buttons injected via JS -->
         </nav>
 
-        <!-- Social Media Row -->
-        <div id="social-container"
-            class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 mt-4 opacity-90 pb-6">
-            <!-- Icons injected via JS -->
-        </div>
 
     </main>
 
-    <!-- Branding (Optional footer signature) -->
-    <div
-        class="absolute bottom-6 font-semibold text-[13px] tracking-wide text-gray-400 dark:text-gray-500 flex items-center gap-1.5 opacity-60">
-        <i class="ph-fill ph-lightning"></i> LinkHub
-    </div>
-
-    <!-- Toast Notification Container -->
+    <!-- Beautiful Toast Notification -->
     <div id="toast"
-        class="fixed bottom-10 left-1/2 -translate-x-1/2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-[14px] font-medium px-5 py-3 rounded-full flex items-center gap-3 shadow-lg z-50 pointer-events-none opacity-0 hidden">
-        <i class="ph-fill ph-check-circle text-green-500 text-lg"></i>
+        class="fixed bottom-8 flex items-center gap-3 px-6 py-4 rounded-full glass-panel bg-white/80 dark:bg-black/60 border border-white/50 dark:border-white/10 shadow-2xl text-slate-800 dark:text-white font-medium">
+        <div
+            class="flex items-center justify-center h-8 w-8 rounded-full bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400">
+            <i data-lucide="check" class="h-4 w-4"></i>
+        </div>
         <span>Link copied to clipboard!</span>
     </div>
 
     <script>
-        // --- 1. Central Data Config ---
+        // --- Central Data Config (No more socials array) ---
         const config = {
             profile: {
                 name: "Abdulaziz",
                 verified: true,
                 bio: "Software Engineer & Designer. Building digital products with clean code and minimalist interfaces.",
-                avatarUrl: "./profile.jpg?v=2"
+                avatarUrl: "./profile.jpg?v=4" // Bumped cache param just in case
             },
             links: [
                 {
                     title: "Portfolio & Case Studies",
                     subtitle: "My recent development projects",
                     url: "https://t.me/abdulazeez_ai",
-                    icon: "ph ph-briefcase",
-                    // Empty color class delegates to standard text color
-                    iconColorClass: ""
+                    icon: "briefcase",
+                    colorClass: "from-blue-500 to-cyan-400", // Gradient accent options
                 },
                 {
                     title: "GitHub Profile",
                     subtitle: "Open source contributions",
                     url: "https://github.com/Sukhrobjonov02",
-                    icon: "ph ph-github-logo",
-                    iconColorClass: ""
+                    icon: "github",
+                    colorClass: "from-slate-700 to-slate-900 dark:from-slate-500 dark:to-slate-300",
                 },
                 {
                     title: "Support my work",
                     subtitle: "Buy me a coffee",
                     url: "https://buymeacoffee.com/sukhrobjonov02",
-                    icon: "ph ph-coffee",
-                    highlight: true // Applies a subtle distinct styling
+                    icon: "coffee",
+                    highlight: true, // Special styling
+                    colorClass: "from-amber-400 to-orange-500",
                 }
-            ],
-            socials: [
-                { platform: "Telegram", url: "https://t.me/Sukhrobjonov02", icon: "ph ph-telegram-logo" },
-                { platform: "LinkedIn", url: "https://www.linkedin.com/in/sukhrobjonov02/", icon: "ph ph-linkedin-logo" },
-                { platform: "Email", url: "mailto:sukhrobjonov02@gmail.com", icon: "ph ph-envelope-simple" }
             ]
         };
 
-        // --- 2. Theme Management ---
+        // --- Theme Management ---
         const themeToggle = document.getElementById('themeToggle');
 
-        // Auto-detect system preference or previous setting
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
+        if (localStorage.theme === 'light' || (!('theme' in localStorage) && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.remove('dark');
+        } else {
+            // Default to dark for that premium WOW effect
+            document.documentElement.classList.add('dark');
         }
 
         themeToggle.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
         });
 
-        // --- 3. DOM Population ---
-        const populateUI = () => {
-            // Setup Profile
-            const avatarImg = document.getElementById('avatar');
-            avatarImg.src = config.profile.avatarUrl;
-            // Since we previously applied a CSS crop to this specific image via style attributes, we need to ensure the image looks okay. By default it is just object-cover. If it's a raw uncropped photo, object-position can be added here if needed, but object-cover is universally safer.
-
-            // Re-apply the specific crop formatting if it was preferred:
-            // avatarImg.style.objectPosition = "center 25%";
-            // avatarImg.style.transform = "scale(1.6)";
-
+        // --- Build UI ---
+        const buildUI = () => {
+            // Load Profile
+            document.getElementById('avatar').src = config.profile.avatarUrl;
             document.getElementById('name').textContent = config.profile.name;
-
-            if (!config.profile.verified) {
-                document.getElementById('verifiedBadge').style.display = 'none';
-            }
-
             document.getElementById('bio').textContent = config.profile.bio;
 
-            // Setup Links
+            // Load Links (Glassmorphism Cards)
             const linksContainer = document.getElementById('links-container');
             config.links.forEach((link, index) => {
                 const a = document.createElement('a');
                 a.href = link.url;
                 a.target = "_blank";
-                a.rel = "noopener noreferrer";
+                a.rel = "noreferrer noopener";
 
-                // Professional Card Styling
-                // Default vs Highlighted styling
-                const bgClasses = link.highlight
-                    ? "bg-gray-900 border-gray-900 dark:bg-white dark:border-white text-white dark:text-gray-900"
-                    : "bg-card-light hover:bg-card-lightHover border-card-lightBorder dark:bg-card-dark dark:hover:bg-card-darkHover dark:border-card-darkBorder text-gray-900 dark:text-white";
+                // Animation delay
+                const delayClass = `delay-${(index % 3 + 1) * 100}`;
 
-                const titleColor = link.highlight
-                    ? (document.documentElement.classList.contains('dark') ? "text-gray-900" : "text-white")
-                    : "text-gray-900 dark:text-gray-100";
+                // Glassmorphism classes combined with highlights
+                let cardClasses = `link-card flex items-center p-4 sm:p-5 w-full rounded-2xl glass-panel opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] ${delayClass} border shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] group relative overflow-hidden `;
 
-                const subtitleColor = link.highlight
-                    ? "text-gray-300 dark:text-gray-500"
-                    : "text-gray-500 dark:text-gray-400";
-
-                a.className = `link-card flex items-center justify-between p-[18px] sm:py-4 px-5 rounded-[20px] md:rounded-[24px] border shadow-sm dark:shadow-soft-dark shadow-soft w-full relative z-10 hover:z-20 ${bgClasses} group outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900 dark:focus-visible:ring-white`;
-
-                // Sub-container for Icon and Text
-                const leftContent = document.createElement('div');
-                leftContent.className = 'flex items-center gap-4 pr-4 w-full';
-
-                // Ensure icon exists
-                if (link.icon) {
-                    const iconWrap = document.createElement('div');
-                    iconWrap.className = 'flex-shrink-0 flex items-center justify-center';
-
-                    const i = document.createElement('i');
-                    i.className = `${link.icon} text-[24px] ${link.iconColorClass || (link.highlight ? '' : 'text-gray-700 dark:text-gray-300')} group-hover:scale-110 transition-transform duration-300`;
-                    iconWrap.appendChild(i);
-                    leftContent.appendChild(iconWrap);
+                if (link.highlight) {
+                    cardClasses += `bg-slate-900/5 dark:bg-white/10 border-slate-900/10 dark:border-white/20 text-slate-900 dark:text-white`;
+                } else {
+                    cardClasses += `bg-white/60 dark:bg-black/40 border-white/60 dark:border-white/10 text-slate-800 dark:text-slate-100`;
                 }
 
-                // Text (Title & Subtitle)
-                const textWrap = document.createElement('div');
-                textWrap.className = 'flex flex-col text-left overflow-hidden';
+                a.className = cardClasses;
+
+                // Subtle background hover glow based on target brand colors
+                const glowHover = document.createElement('div');
+                glowHover.className = `absolute inset-0 bg-gradient-to-r ${link.colorClass} opacity-0 group-hover:opacity-[0.05] dark:group-hover:opacity-[0.1] transition-opacity duration-500`;
+                a.appendChild(glowHover);
+
+                // Content wrapper
+                const contentWrapper = document.createElement('div');
+                contentWrapper.className = "flex w-full items-center justify-between relative z-10";
+
+                // Icon + Text
+                const leftSide = document.createElement('div');
+                leftSide.className = "flex items-center gap-4 sm:gap-5";
+
+                const iconBox = document.createElement('div');
+                iconBox.className = `flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${link.colorClass} text-white shadow-md transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110`;
+                iconBox.innerHTML = `<i data-lucide="${link.icon}" class="h-6 w-6"></i>`;
+                leftSide.appendChild(iconBox);
+
+                const textBox = document.createElement('div');
+                textBox.className = "flex flex-col text-left";
 
                 const title = document.createElement('h3');
-                title.className = `font-semibold text-[15px] sm:text-[16px] leading-tight mb-[3px] truncate ${titleColor}`;
+                title.className = "text-[16px] sm:text-[17px] font-semibold tracking-tight transition-colors duration-300";
                 title.textContent = link.title;
-                textWrap.appendChild(title);
+                textBox.appendChild(title);
 
                 if (link.subtitle) {
-                    const sub = document.createElement('span');
-                    sub.className = `text-[13px] font-medium truncate ${subtitleColor}`;
-                    sub.textContent = link.subtitle;
-                    textWrap.appendChild(sub);
+                    const subtitle = document.createElement('span');
+                    subtitle.className = "text-[13.5px] font-medium opacity-60 mt-0.5";
+                    subtitle.textContent = link.subtitle;
+                    textBox.appendChild(subtitle);
                 }
 
-                leftContent.appendChild(textWrap);
+                leftSide.appendChild(textBox);
+                contentWrapper.appendChild(leftSide);
 
-                // Right arrow (or ellipsis) - standard professional linktree UI
-                const rightContent = document.createElement('div');
-                rightContent.className = 'flex-shrink-0 text-gray-400 dark:text-gray-500 transition-transform duration-300 group-hover:translate-x-1';
+                // Right Arrow
+                const arrow = document.createElement('div');
+                arrow.className = "flex h-8 w-8 items-center justify-center rounded-full bg-slate-900/5 dark:bg-white/10 opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0";
+                arrow.innerHTML = `<i data-lucide="arrow-right" class="h-4 w-4"></i>`;
+                contentWrapper.appendChild(arrow);
 
-                const arrowIcon = document.createElement('i');
-                arrowIcon.className = "ph ph-caret-right text-[20px]";
-                if (link.highlight) {
-                    arrowIcon.classList.remove('text-gray-400');
-                    arrowIcon.classList.add('opacity-80');
-                }
-
-                rightContent.appendChild(arrowIcon);
-
-                a.appendChild(leftContent);
-                a.appendChild(rightContent);
+                a.appendChild(contentWrapper);
                 linksContainer.appendChild(a);
             });
 
-            // Setup Socials
-            const socialContainer = document.getElementById('social-container');
-            config.socials.forEach(social => {
-                const a = document.createElement('a');
-                a.href = social.url;
-                a.target = "_blank";
-                a.rel = "noopener noreferrer";
-                a.className = "flex items-center justify-center text-[28px] text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all duration-200 hover:scale-110 active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-lg";
-                a.setAttribute('aria-label', social.platform);
-
-                const icon = document.createElement('i');
-                icon.className = social.icon;
-
-                a.appendChild(icon);
-                socialContainer.appendChild(a);
-            });
+            // Initialize Icons
+            lucide.createIcons();
         };
 
-        // --- 4. Share & Toast System ---
+        // --- Toast System ---
         const shareBtn = document.getElementById('shareBtn');
         const toast = document.getElementById('toast');
         let toastTimeout;
 
-        const showToast = () => {
-            clearTimeout(toastTimeout);
-            toast.classList.remove('hidden', 'toast-exit');
-            toast.classList.add('toast-enter');
-
-            toastTimeout = setTimeout(() => {
-                toast.classList.remove('toast-enter');
-                toast.classList.add('toast-exit');
-
-                // Hide completely after exit animation
-                setTimeout(() => {
-                    if (toast.classList.contains('toast-exit')) {
-                        toast.classList.add('hidden');
-                    }
-                }, 300);
-            }, 3000);
-        };
-
         shareBtn.addEventListener('click', async () => {
-            const url = window.location.href;
-
             if (navigator.share) {
                 try {
-                    await navigator.share({
-                        title: `${config.profile.name}'s Links`,
-                        url: url
-                    });
-                } catch (err) {
-                    // Ignore abort errors
-                }
+                    await navigator.share({ title: 'Abdulaziz Links', url: window.location.href });
+                } catch (e) { }
             } else {
-                try {
-                    await navigator.clipboard.writeText(url);
-                    showToast();
-                } catch (err) {
-                    console.error('Failed to copy', err);
-                }
+                navigator.clipboard.writeText(window.location.href);
+                clearTimeout(toastTimeout);
+                toast.classList.add('show');
+                toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
             }
         });
 
         // Initialize Native
-        document.addEventListener('DOMContentLoaded', populateUI);
+        document.addEventListener('DOMContentLoaded', buildUI);
     </script>
 </body>
 
