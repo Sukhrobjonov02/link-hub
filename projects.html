@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects · Abdulaziz</title>
+
+    <meta name="description" content="Selected projects by Abdulaziz — full-stack, IoT, Telegram bots, and industrial platforms.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { 400: '#9b87f5', 500: '#7E69AB', 600: '#6E59A5' },
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'blob-reverse': 'blob-reverse 12s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        'blob-reverse': {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(-30px, 50px) scale(1.2)' },
+                            '66%': { transform: 'translate(20px, -20px) scale(0.8)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body { transition: background-color 0.5s ease; }
+
+        .glass-panel {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .bg-mesh {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            background-color: #f8fafc;
+            transition: background-color 0.5s ease;
+        }
+        .dark .bg-mesh { background-color: #09090b; }
+
+        .tech-pill {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .feature-dot::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 999px;
+            background: currentColor;
+            margin-right: 10px;
+            vertical-align: middle;
+            opacity: 0.6;
+        }
+
+        /* Stagger delays */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-150 { animation-delay: 150ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-250 { animation-delay: 250ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+    </style>
+</head>
+
+<body class="min-h-screen text-slate-800 dark:text-slate-100 selection:bg-brand-500/30 selection:text-brand-500">
+
+    <!-- Animated Blobs Background -->
+    <div class="bg-mesh">
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-400/20 dark:bg-brand-400/20 blur-[80px] animate-blob"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-400/20 dark:bg-purple-600/20 blur-[100px] animate-blob-reverse"></div>
+        <div class="absolute top-[40%] left-[25%] w-[400px] h-[400px] rounded-full bg-pink-400/20 dark:bg-pink-600/10 blur-[80px] animate-blob"></div>
+    </div>
+
+    <!-- Top Controls -->
+    <div class="fixed top-6 left-6 z-50 animate-fade-in-up">
+        <a href="./index.html"
+            class="flex h-12 px-5 items-center justify-center gap-2 rounded-full glass-panel bg-white/50 dark:bg-black/40 border border-white/40 dark:border-white/10 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white shadow-lg transition-all hover:-translate-y-0.5 active:scale-95 font-medium">
+            <i data-lucide="arrow-left" class="h-4 w-4"></i>
+            <span>Back</span>
+        </a>
+    </div>
+
+    <div class="fixed top-6 right-6 z-50 animate-fade-in-up">
+        <button id="themeToggle"
+            class="flex h-12 w-12 items-center justify-center rounded-full glass-panel bg-white/50 dark:bg-black/40 border border-white/40 dark:border-white/10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white shadow-lg transition-all hover:scale-110 active:scale-95"
+            aria-label="Toggle theme">
+            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+            <i data-lucide="sun" class="h-5 w-5 block dark:hidden"></i>
+        </button>
+    </div>
+
+    <!-- Main -->
+    <main class="relative w-full max-w-[960px] px-5 pt-28 pb-24 mx-auto z-10">
+
+        <!-- Header -->
+        <header class="text-center mb-12 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel bg-white/50 dark:bg-white/5 border border-white/40 dark:border-white/10 text-xs font-medium text-slate-600 dark:text-slate-300 mb-5">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Open to opportunities
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Abdulaziz Sukhrobjonov
+            </h1>
+            <p class="text-[15px] text-slate-500 dark:text-slate-400 mt-2 font-light">
+                Software Engineer · Tashkent, Uzbekistan
+            </p>
+        </header>
+
+        <!-- About -->
+        <section class="mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+            <div class="flex items-center gap-3 mb-5">
+                <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-slate-700 to-slate-900 dark:from-slate-400 dark:to-slate-200 text-white dark:text-slate-900 shadow-md">
+                    <i data-lucide="user" class="h-4 w-4"></i>
+                </div>
+                <h2 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">About</h2>
+            </div>
+
+            <div class="glass-panel rounded-2xl bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] p-6 sm:p-7 space-y-4 text-[14.5px] leading-relaxed text-slate-600 dark:text-slate-300 font-light">
+                <p><span class="font-semibold text-slate-900 dark:text-white">Software Engineer based in Tashkent, Uzbekistan.</span></p>
+                <p>I ship full-stack products end-to-end — web platforms, IoT systems, and Telegram apps. My stack is Python, TypeScript, Next.js, and NestJS, backed by PostgreSQL, Redis, and Firebase.</p>
+                <p>I work in an AI-assisted development style: pairing with coding tools to move from idea to production quickly, while keeping architecture, UX, and product decisions deliberate. Recent work includes <span class="font-medium text-slate-800 dark:text-slate-100">Lisan</span> (a Kahoot-style quiz SaaS with Arabic RTL support), a <span class="font-medium text-slate-800 dark:text-slate-100">Railway Inspection</span> system combining ESP32 + RFID firmware with a Next.js admin and React Native app, and two Telegram products — <span class="font-medium text-slate-800 dark:text-slate-100">LahzaGet</span> and <span class="font-medium text-slate-800 dark:text-slate-100">day.note</span>.</p>
+                <p class="text-slate-700 dark:text-slate-200">Open to Software Engineer roles — full-stack, backend, or platform.</p>
+            </div>
+        </section>
+
+        <!-- Experience & Education -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+            <!-- Experience -->
+            <div class="glass-panel rounded-2xl bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] p-6 sm:p-7 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow-md">
+                        <i data-lucide="briefcase" class="h-4 w-4"></i>
+                    </div>
+                    <h2 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">Experience</h2>
+                </div>
+
+                <ol class="relative border-l border-slate-200 dark:border-white/10 pl-5 space-y-5">
+                    <li class="relative">
+                        <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 ring-4 ring-white dark:ring-[#0a0a0b]"></span>
+                        <div class="text-[15px] font-semibold text-slate-900 dark:text-white">Software Engineer</div>
+                        <div class="text-[13.5px] text-slate-600 dark:text-slate-300 font-medium">DreamLogic · Internship</div>
+                        <div class="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">Aug 2023 – Nov 2023 · 4 mos</div>
+                        <div class="text-[12px] text-slate-400 dark:text-slate-500">Tashkent, Uzbekistan · On-site</div>
+                    </li>
+                    <li class="relative">
+                        <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-slate-300 dark:bg-slate-600 ring-4 ring-white dark:ring-[#0a0a0b]"></span>
+                        <div class="text-[15px] font-semibold text-slate-900 dark:text-white">Software Engineer</div>
+                        <div class="text-[13.5px] text-slate-600 dark:text-slate-300 font-medium">Novalab Tech · Internship</div>
+                        <div class="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">Nov 2021 – Dec 2021 · 2 mos</div>
+                        <div class="text-[12px] text-slate-400 dark:text-slate-500">Tashkent Region, Uzbekistan</div>
+                        <div class="flex flex-wrap gap-1.5 mt-2">
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">PostgreSQL</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Swagger API</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Education -->
+            <div class="glass-panel rounded-2xl bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] p-6 sm:p-7 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] delay-150">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white shadow-md">
+                        <i data-lucide="graduation-cap" class="h-4 w-4"></i>
+                    </div>
+                    <h2 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">Education</h2>
+                </div>
+
+                <ol class="relative border-l border-slate-200 dark:border-white/10 pl-5 space-y-5">
+                    <li class="relative">
+                        <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 ring-4 ring-white dark:ring-[#0a0a0b]"></span>
+                        <div class="text-[15px] font-semibold text-slate-900 dark:text-white">Turin Polytechnic University in Tashkent</div>
+                        <div class="text-[13.5px] text-slate-600 dark:text-slate-300 font-medium">Bachelor's degree, Computer Engineering</div>
+                        <div class="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">2020 – 2023</div>
+                    </li>
+                    <li class="relative">
+                        <span class="absolute -left-[27px] top-1.5 h-3 w-3 rounded-full bg-slate-300 dark:bg-slate-600 ring-4 ring-white dark:ring-[#0a0a0b]"></span>
+                        <div class="text-[15px] font-semibold text-slate-900 dark:text-white">Politecnico di Torino</div>
+                        <div class="text-[13.5px] text-slate-600 dark:text-slate-300 font-medium">Bachelor's degree, Computer Engineering</div>
+                        <div class="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">Feb 2022 – Jul 2022 · Exchange program</div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
+            <div class="flex items-center gap-3 mb-5">
+                <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-md">
+                    <i data-lucide="wrench" class="h-4 w-4"></i>
+                </div>
+                <h2 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">Skills</h2>
+            </div>
+
+            <div class="glass-panel rounded-2xl bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] p-6 sm:p-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                    <div class="text-[11px] uppercase tracking-wider font-semibold text-slate-400 dark:text-slate-500 mb-2">Languages</div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Python</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">TypeScript</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">JavaScript</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Go</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">SQL</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-[11px] uppercase tracking-wider font-semibold text-slate-400 dark:text-slate-500 mb-2">Frontend & Mobile</div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Next.js</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">React</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Tailwind CSS</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">shadcn/ui</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Framer Motion</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Expo</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-[11px] uppercase tracking-wider font-semibold text-slate-400 dark:text-slate-500 mb-2">Backend & Bots</div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">NestJS</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Django</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Flask</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Aiogram</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Telethon</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">REST APIs</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-[11px] uppercase tracking-wider font-semibold text-slate-400 dark:text-slate-500 mb-2">Data & Infra</div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">PostgreSQL</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Redis</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Prisma</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Supabase</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Firebase</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Docker</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Vercel</span>
+                        <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Git</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300">
+            <div class="flex items-center gap-3 mb-5">
+                <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-md">
+                    <i data-lucide="badge-check" class="h-4 w-4"></i>
+                </div>
+                <h2 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">Licenses & Certifications</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="https://www.udacity.com/certificate/e/86a1ac36-c293-11ed-8d2f-eb4d13ab02e1" target="_blank" rel="noreferrer noopener"
+                    class="group glass-panel rounded-xl bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 p-4 flex items-start gap-3 hover:-translate-y-0.5 transition-transform">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#02B3E4] text-white font-bold text-lg">U</div>
+                    <div class="min-w-0 flex-1">
+                        <div class="text-[14px] font-semibold text-slate-900 dark:text-white leading-snug">Full Stack Web Developer Nanodegree</div>
+                        <div class="text-[12.5px] text-slate-500 dark:text-slate-400 mt-0.5">Udacity · Jul 2023</div>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Python</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Flask</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">PostgreSQL</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Docker</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Kubernetes</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Heroku</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">REST APIs</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Git</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">IAM</span>
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Data Modeling</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1 text-[11.5px] text-slate-400 dark:text-slate-500 mt-2 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                            <span>Show credential</span>
+                            <i data-lucide="external-link" class="h-3 w-3"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.coursera.org/account/accomplishments/verify/H43HXQXRCKD2" target="_blank" rel="noreferrer noopener"
+                    class="group glass-panel rounded-xl bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 p-4 flex items-start gap-3 hover:-translate-y-0.5 transition-transform">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0668E1] text-white">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12.01 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.49 2 12.01 2zm-.36 13.83c2.11 0 3.83-1.72 3.83-3.83 0-2.12-1.72-3.83-3.83-3.83-2.12 0-3.83 1.71-3.83 3.83 0 2.11 1.71 3.83 3.83 3.83z"/></svg>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <div class="text-[14px] font-semibold text-slate-900 dark:text-white leading-snug">Meta Back-End Developer · Version Control</div>
+                        <div class="text-[12.5px] text-slate-500 dark:text-slate-400 mt-0.5">Meta · Sep 2022</div>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Git</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1 text-[11.5px] text-slate-400 dark:text-slate-500 mt-2 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                            <span>Show credential</span>
+                            <i data-lucide="external-link" class="h-3 w-3"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.hackerrank.com/certificates/12aabf84ac12" target="_blank" rel="noreferrer noopener"
+                    class="group glass-panel rounded-xl bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 p-4 flex items-start gap-3 hover:-translate-y-0.5 transition-transform">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1BA94C] text-white font-bold text-sm">HR</div>
+                    <div class="min-w-0 flex-1">
+                        <div class="text-[14px] font-semibold text-slate-900 dark:text-white leading-snug">SQL (Basic)</div>
+                        <div class="text-[12.5px] text-slate-500 dark:text-slate-400 mt-0.5">HackerRank · Jun 2022</div>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">SQL</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1 text-[11.5px] text-slate-400 dark:text-slate-500 mt-2 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                            <span>Show credential</span>
+                            <i data-lucide="external-link" class="h-3 w-3"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.hackerrank.com/certificates/4055d307b0d3" target="_blank" rel="noreferrer noopener"
+                    class="group glass-panel rounded-xl bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 p-4 flex items-start gap-3 hover:-translate-y-0.5 transition-transform">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1BA94C] text-white font-bold text-sm">HR</div>
+                    <div class="min-w-0 flex-1">
+                        <div class="text-[14px] font-semibold text-slate-900 dark:text-white leading-snug">Python (Basic)</div>
+                        <div class="text-[12.5px] text-slate-500 dark:text-slate-400 mt-0.5">HackerRank · Apr 2022</div>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200">Python</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1 text-[11.5px] text-slate-400 dark:text-slate-500 mt-2 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                            <span>Show credential</span>
+                            <i data-lucide="external-link" class="h-3 w-3"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Projects heading -->
+        <div class="mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300">
+            <div class="flex items-center gap-3">
+                <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white shadow-md">
+                    <i data-lucide="layout-grid" class="h-4 w-4"></i>
+                </div>
+                <h2 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">Projects</h2>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <section id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Cards injected via JS -->
+        </section>
+
+        <!-- Footer CTA -->
+        <footer class="mt-16 text-center opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] delay-500">
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <a href="https://github.com/Sukhrobjonov02" target="_blank" rel="noreferrer noopener"
+                    class="flex items-center gap-2 px-5 h-11 rounded-full glass-panel bg-white/50 dark:bg-black/40 border border-white/40 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white font-medium transition-all hover:-translate-y-0.5">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.4 7.86 10.93.57.11.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.9-.39.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.67.79.56C20.22 21.42 23.5 17.1 23.5 12.02 23.5 5.66 18.35.5 12 .5Z"/></svg>
+                    GitHub
+                </a>
+                <a href="https://t.me/Sukhrobjonov02" target="_blank" rel="noreferrer noopener"
+                    class="flex items-center gap-2 px-5 h-11 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium transition-all hover:-translate-y-0.5">
+                    <i data-lucide="send" class="h-4 w-4"></i>
+                    Get in touch
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const projects = [
+            {
+                name: "Lisan",
+                tagline: "Gamified multi-lingual quiz platform for organizations.",
+                icon: "graduation-cap",
+                color: "from-violet-500 to-fuchsia-500",
+                year: "2025",
+                scope: "Full-stack · SaaS",
+                links: [
+                    { label: "Live site", url: "https://lisan.uz/", icon: "external-link", primary: true }
+                ],
+                description:
+                    "A Kahoot-inspired language learning and assessment platform built for schools, training centers, and self-learners. Supports real-time quiz sessions, instant feedback, org-level role management, and full RTL Arabic experience alongside English.",
+                features: [
+                    "Gamified quiz runner with timers, streaks, and live scoring",
+                    "Bulk question import from Excel (.xlsx/.xls) with validation",
+                    "Analytics: average scores, attempts, engagement, org health",
+                    "Multi-tenant orgs with Owner / Admin / Member roles & invites",
+                    "Full RTL Arabic + English localization via i18next",
+                    "Background processing for imports & notifications (BullMQ)"
+                ],
+                stack: [
+                    "Next.js 14", "React", "TypeScript", "Tailwind", "shadcn/ui",
+                    "Framer Motion", "React Hook Form", "Zod", "TanStack Query",
+                    "NestJS", "Prisma", "PostgreSQL", "Redis", "BullMQ", "i18next"
+                ]
+            },
+            {
+                name: "Railway Inspection",
+                tagline: "RFID + IoT inspection system for railway infrastructure.",
+                icon: "train-front",
+                color: "from-sky-500 to-cyan-400",
+                year: "2025",
+                scope: "IoT · Full-stack · Mobile",
+                links: [
+                    { label: "Live demo", url: "https://railway-inspection-six.vercel.app", icon: "external-link", primary: true }
+                ],
+                demo: {
+                    label: "Demo access",
+                    fields: [
+                        { k: "Email", v: "demo@railvision.uz" },
+                        { k: "Password", v: "RailDemo2026" }
+                    ]
+                },
+                description:
+                    "An end-to-end inspection platform combining an ESP32 firmware with RFID + cellular modem, a React Native field app for inspectors, and a Next.js admin dashboard. Each piece of equipment carries a MIFARE 1K card; inspection events stream over LTE straight into Firebase.",
+                features: [
+                    "ESP32 firmware: MFRC522 RFID reader + SIM7000 LTE uplink",
+                    "MIFARE 1K block-level layout for equipment ID, name, metadata",
+                    "Expo / React Native app for on-site inspectors (EAS builds)",
+                    "Next.js admin panel: equipment, inspections, users, roles",
+                    "Firebase Auth, Firestore, Storage, Cloud Functions (Node 22)",
+                    "Multi-carrier APN support (Ucell, Beeline) with fallbacks",
+                    "System flowcharts & ops docs for deployment in the field"
+                ],
+                stack: [
+                    "ESP32", "Arduino/C++", "MFRC522 RFID", "SIM7000 LTE",
+                    "Expo", "React Native", "Next.js", "TypeScript",
+                    "Firebase", "Firestore", "Cloud Functions", "Tailwind"
+                ]
+            },
+            {
+                name: "TankerCrusher",
+                tagline: "B2B industrial equipment platform with an Industrial Fintech aesthetic.",
+                icon: "cog",
+                color: "from-orange-500 to-red-500",
+                year: "2025",
+                scope: "Full-stack · E-commerce",
+                status: "In development",
+                description:
+                    "A bilingual (Uzbek / Russian) product catalog and lead-gen platform for an industrial equipment brand. Ships with an admin CMS for product management and a contact funnel that routes leads directly to Telegram for instant response.",
+                features: [
+                    "Locale-aware routing with next-intl (uz default, ru secondary)",
+                    "Dark / light theming via custom ThemeProvider + Tailwind v4",
+                    "Admin panel: Supabase-authenticated product CRUD & leads view",
+                    "Contact form → Telegram bot pipeline for real-time lead alerts",
+                    "SEO: sitemap, robots, OG metadata, fully SSR-optimized",
+                    "Protected `main` branch with PR-based feature workflow"
+                ],
+                stack: [
+                    "Next.js 15", "App Router", "TypeScript", "Tailwind v4",
+                    "shadcn/ui", "next-intl", "next-themes", "Supabase",
+                    "Telegram Bot API", "Vercel"
+                ]
+            },
+            {
+                name: "day.note",
+                tagline: "Minimalist task tracker living inside Telegram.",
+                icon: "sticky-note",
+                color: "from-amber-400 to-yellow-500",
+                year: "2025",
+                scope: "Telegram Mini App",
+                links: [
+                    { label: "Open bot", url: "https://t.me/daynote_app_bot", icon: "send", primary: true }
+                ],
+                description:
+                    "A Telegram Mini App (TMA) that makes daily task tracking frictionless — no install, no account, just open it inside Telegram and start writing. Tagline: \"Noted. Done.\"",
+                features: [
+                    "Runs natively inside Telegram via @tma.js/sdk-react",
+                    "Firebase Auth tied to the Telegram user — zero-signup flow",
+                    "Realtime Firestore sync across user's devices",
+                    "Browser fallback with deep link back into the TMA",
+                    "Framer Motion micro-interactions on list changes",
+                    "Custom typographic logo and accent system (Outfit + yellow dot)"
+                ],
+                stack: [
+                    "Next.js 16", "React 19", "TypeScript", "Tailwind v4",
+                    "@tma.js/sdk-react", "Firebase", "Framer Motion"
+                ]
+            },
+            {
+                name: "LahzaGet",
+                tagline: "Telegram bot that rips Stories in highest quality — no app required.",
+                icon: "download",
+                color: "from-emerald-500 to-teal-500",
+                year: "2025",
+                scope: "Telegram Bot · Backend",
+                links: [
+                    { label: "Open bot", url: "https://t.me/lahzaget_bot", icon: "send", primary: true }
+                ],
+                description:
+                    "Send the bot a story link or forward the story itself, get the media back in the chat. Pulls directly over MTProto so quality is preserved end-to-end, with full observability and auto-cleanup of temp files.",
+                features: [
+                    "Two input modes: story URL or forwarded story",
+                    "MTProto (Telethon) pull for maximum quality",
+                    "Aiogram 3.x async bot with clean handler separation",
+                    "SQLite + SQLAlchemy (aiosqlite) persistence for download stats",
+                    "`/stats` command exposing per-user download metrics",
+                    "Pydantic Settings for 12-factor config via `.env`"
+                ],
+                stack: [
+                    "Python 3.12", "Aiogram 3", "Telethon", "SQLAlchemy",
+                    "aiosqlite", "Pydantic Settings"
+                ]
+            },
+            {
+                name: "CV App",
+                tagline: "Form-to-PDF resume builder deployed on Vercel.",
+                icon: "file-text",
+                color: "from-blue-500 to-indigo-500",
+                year: "2025",
+                scope: "Web App · Python",
+                links: [
+                    { label: "Live site", url: "https://cv-generator-flask.vercel.app/", icon: "external-link", primary: true }
+                ],
+                description:
+                    "A small Flask web app that turns a multi-section form (skills, experience, education, projects, languages) into a clean, downloadable PDF. Built as a weekend project — deployed as a serverless Python function on Vercel.",
+                features: [
+                    "Dynamic repeatable sections (skills, experience, education, projects)",
+                    "Live HTML preview before PDF export",
+                    "FPDF-based PDF generation with Unicode → Latin-1 sanitation",
+                    "Clean, typography-driven resume template",
+                    "One-click PDF download with personalized filename",
+                    "Serverless deploy on Vercel via `vercel.json`"
+                ],
+                stack: [
+                    "Python", "Flask", "FPDF", "HTML", "CSS", "JavaScript", "Vercel"
+                ]
+            },
+            {
+                name: "Business Audit",
+                tagline: "Self-service marketing readiness audit for small businesses.",
+                icon: "line-chart",
+                color: "from-pink-500 to-rose-500",
+                year: "2025",
+                scope: "Web App · React",
+                links: [
+                    { label: "Live site", url: "https://audit-tool-eight.vercel.app/", icon: "external-link", primary: true }
+                ],
+                description:
+                    "A 3-step wizard that scores a business's digital marketing readiness and produces a downloadable audit report. Aimed at SME owners who want a quick, honest snapshot of the gaps in their funnel.",
+                features: [
+                    "3-step flow: Business state → Goals → Dashboard result",
+                    "Inputs: CRM presence, sales team, social media maturity, avg check, conversion, revenue goal",
+                    "Computes scorecard and highlights leaks in the funnel",
+                    "One-click PDF report export via html2pdf.js",
+                    "Validation gates between steps to enforce data quality",
+                    "Uzbek-first UX, tuned for local SMB vocabulary"
+                ],
+                stack: [
+                    "React 19", "Vite", "html2pdf.js", "Lucide React"
+                ]
+            },
+            {
+                name: "LinkHub",
+                tagline: "The site you're on — a minimalist personal link hub.",
+                icon: "link",
+                color: "from-slate-600 to-slate-900 dark:from-slate-400 dark:to-slate-200",
+                year: "2025",
+                scope: "Static Site",
+                links: [
+                    { label: "Live site", url: "https://sukhrobjonov02.me", icon: "external-link", primary: true }
+                ],
+                description:
+                    "The landing page that points to everything — socials, projects, and work. Designed to be lightweight, fast, and recruiter-friendly, doubling as a live CV link.",
+                features: [
+                    "Glassmorphism cards with animated gradient blobs",
+                    "Dark / light theme toggle with localStorage persistence",
+                    "Web Share API with clipboard fallback + toast",
+                    "Config-driven link list — edit one object to ship",
+                    "Zero build step: HTML + Tailwind CDN + vanilla JS",
+                    "Dedicated `/projects.html` for recruiter deep-dives"
+                ],
+                stack: [
+                    "HTML", "Tailwind CSS", "Lucide Icons", "Vanilla JS"
+                ]
+            }
+        ];
+
+        // Theme
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.theme === 'light' || (!('theme' in localStorage) && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // Build cards
+        const grid = document.getElementById('projects-grid');
+        projects.forEach((p, i) => {
+            const delayIdx = (i % 4) + 1;
+            const delay = `delay-${delayIdx * 100}`;
+
+            const card = document.createElement('article');
+            card.className = `project-card group opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] ${delay} relative overflow-hidden rounded-2xl glass-panel bg-white/60 dark:bg-black/40 border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] p-6 sm:p-7 flex flex-col`;
+
+            // Decorative gradient glow
+            const glow = document.createElement('div');
+            glow.className = `pointer-events-none absolute -top-24 -right-24 w-60 h-60 rounded-full bg-gradient-to-br ${p.color} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`;
+            card.appendChild(glow);
+
+            // Top row: icon + meta
+            const topRow = document.createElement('div');
+            topRow.className = 'relative flex items-start justify-between mb-4';
+
+            const iconBox = document.createElement('div');
+            iconBox.className = `flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${p.color} text-white shadow-md`;
+            iconBox.innerHTML = `<i data-lucide="${p.icon}" class="h-6 w-6"></i>`;
+            topRow.appendChild(iconBox);
+
+            const meta = document.createElement('div');
+            meta.className = 'text-right';
+            meta.innerHTML = `
+                <div class="text-xs font-medium text-slate-500 dark:text-slate-400">${p.year}</div>
+                ${p.status ? `<div class="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-[10px] font-semibold uppercase tracking-wider text-orange-600 dark:text-orange-300"><span class="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse"></span>${p.status}</div>` : ''}
+            `;
+            topRow.appendChild(meta);
+            card.appendChild(topRow);
+
+            // Title + tagline
+            const title = document.createElement('h2');
+            title.className = 'relative text-xl sm:text-2xl font-semibold tracking-tight text-slate-900 dark:text-white mb-1.5';
+            title.textContent = p.name;
+            card.appendChild(title);
+
+            const tagline = document.createElement('p');
+            tagline.className = 'relative text-[14px] text-slate-500 dark:text-slate-400 leading-snug mb-4 font-light';
+            tagline.textContent = p.tagline;
+            card.appendChild(tagline);
+
+            // Features (top 3 only, no label)
+            const featList = document.createElement('ul');
+            featList.className = 'relative space-y-1.5 mb-5 text-[13px] text-slate-600 dark:text-slate-300';
+            p.features.slice(0, 3).forEach(f => {
+                const li = document.createElement('li');
+                li.className = 'feature-dot leading-snug';
+                li.textContent = f;
+                featList.appendChild(li);
+            });
+            card.appendChild(featList);
+
+            // Stack (top 8 pills, no label)
+            const stackWrap = document.createElement('div');
+            stackWrap.className = 'relative flex flex-wrap gap-1.5';
+            p.stack.slice(0, 8).forEach(t => {
+                const pill = document.createElement('span');
+                pill.className = 'tech-pill bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200 border border-slate-900/5 dark:border-white/5';
+                pill.textContent = t;
+                stackWrap.appendChild(pill);
+            });
+            if (p.stack.length > 8) {
+                const more = document.createElement('span');
+                more.className = 'tech-pill bg-transparent text-slate-500 dark:text-slate-400';
+                more.textContent = `+${p.stack.length - 8}`;
+                stackWrap.appendChild(more);
+            }
+            card.appendChild(stackWrap);
+
+            // Demo credentials (optional)
+            if (p.demo) {
+                const demoBox = document.createElement('div');
+                demoBox.className = 'relative mt-5 p-3.5 rounded-xl bg-sky-500/5 dark:bg-sky-400/5 border border-sky-500/20 dark:border-sky-400/20';
+
+                const demoHeader = document.createElement('div');
+                demoHeader.className = 'flex items-center gap-2 mb-2.5';
+                demoHeader.innerHTML = `
+                    <div class="flex h-5 w-5 items-center justify-center rounded bg-sky-500/15 text-sky-600 dark:text-sky-300">
+                        <i data-lucide="key-round" class="h-3 w-3"></i>
+                    </div>
+                    <div class="text-[11px] uppercase tracking-wider font-semibold text-sky-700 dark:text-sky-300">${p.demo.label}</div>
+                `;
+                demoBox.appendChild(demoHeader);
+
+                const credList = document.createElement('div');
+                credList.className = 'space-y-1.5';
+                p.demo.fields.forEach(f => {
+                    const row = document.createElement('div');
+                    row.className = 'flex items-center justify-between gap-3';
+                    row.innerHTML = `
+                        <span class="text-[11.5px] uppercase tracking-wider font-medium text-slate-500 dark:text-slate-400 shrink-0">${f.k}</span>
+                        <button type="button" data-copy="${f.v.replace(/"/g, '&quot;')}" class="copy-btn group/copy flex-1 min-w-0 flex items-center justify-end gap-1.5 text-[13px] font-mono text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-colors">
+                            <span class="truncate">${f.v}</span>
+                            <i data-lucide="copy" class="h-3 w-3 opacity-50 group-hover/copy:opacity-100 shrink-0"></i>
+                        </button>
+                    `;
+                    credList.appendChild(row);
+                });
+                demoBox.appendChild(credList);
+                card.appendChild(demoBox);
+            }
+
+            // Links (live site, bot, etc.)
+            if (p.links && p.links.length) {
+                const linkRow = document.createElement('div');
+                linkRow.className = 'relative mt-5 flex flex-wrap gap-2';
+                p.links.forEach(l => {
+                    const a = document.createElement('a');
+                    a.href = l.url;
+                    a.target = '_blank';
+                    a.rel = 'noreferrer noopener';
+                    const base = 'inline-flex items-center gap-2 px-4 h-10 rounded-full font-medium text-[13px] transition-all hover:-translate-y-0.5 active:scale-95';
+                    a.className = l.primary
+                        ? `${base} bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md`
+                        : `${base} bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200 border border-slate-900/5 dark:border-white/10`;
+                    a.innerHTML = `<i data-lucide="${l.icon}" class="h-3.5 w-3.5"></i><span>${l.label}</span>`;
+                    linkRow.appendChild(a);
+                });
+                card.appendChild(linkRow);
+            } else if (p.status) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'relative mt-5 inline-flex items-center gap-2 px-4 h-10 rounded-full bg-slate-900/5 dark:bg-white/5 border border-slate-900/5 dark:border-white/10 text-[13px] font-medium text-slate-500 dark:text-slate-400 w-fit';
+                placeholder.innerHTML = `<i data-lucide="clock" class="h-3.5 w-3.5"></i><span>Link available on launch</span>`;
+                card.appendChild(placeholder);
+            }
+
+            grid.appendChild(card);
+        });
+
+        // Copy-to-clipboard for demo credentials
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-copy]');
+            if (!btn) return;
+            const val = btn.getAttribute('data-copy');
+            navigator.clipboard.writeText(val).then(() => {
+                const icon = btn.querySelector('i');
+                if (!icon) return;
+                const prev = icon.getAttribute('data-lucide');
+                icon.setAttribute('data-lucide', 'check');
+                icon.classList.add('text-green-500');
+                lucide.createIcons();
+                setTimeout(() => {
+                    const newIcon = btn.querySelector('i');
+                    if (newIcon) {
+                        newIcon.setAttribute('data-lucide', prev);
+                        newIcon.classList.remove('text-green-500');
+                        lucide.createIcons();
+                    }
+                }, 1400);
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -4,7 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulaziz | Personal Link Hub</title>
+    <title>Abdulaziz — Software Engineer</title>
+    <meta name="description" content="Software Engineer shipping full-stack products — web, IoT, and Telegram platforms. View selected projects, GitHub, and contact.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Abdulaziz — Software Engineer">
+    <meta property="og:description" content="Selected projects, GitHub, and contact. Full-stack, IoT, Telegram platforms.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./profile.jpg">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -211,8 +218,13 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-2 mb-3">
+            <div class="flex items-center gap-2 mb-2">
                 <h1 id="name" class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white"></h1>
+            </div>
+
+            <div id="location" class="inline-flex items-center gap-1.5 mb-3 text-[13px] font-medium text-slate-500 dark:text-slate-400">
+                <i data-lucide="map-pin" class="h-3.5 w-3.5"></i>
+                <span>Tashkent, Uzbekistan</span>
             </div>
 
             <p id="bio" class="text-[16px] text-slate-600 dark:text-slate-300 max-w-[440px] leading-relaxed font-light">
@@ -229,7 +241,7 @@
 
     <!-- Beautiful Toast Notification -->
     <div id="toast"
-        class="fixed bottom-8 flex items-center gap-3 px-6 py-4 rounded-full glass-panel bg-white/80 dark:bg-black/60 border border-white/50 dark:border-white/10 shadow-2xl text-slate-800 dark:text-white font-medium">
+        class="fixed bottom-8 left-1/2 flex items-center gap-3 px-6 py-4 rounded-full glass-panel bg-white/80 dark:bg-black/60 border border-white/50 dark:border-white/10 shadow-2xl text-slate-800 dark:text-white font-medium whitespace-nowrap">
         <div
             class="flex items-center justify-center h-8 w-8 rounded-full bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400">
             <i data-lucide="check" class="h-4 w-4"></i>
@@ -241,33 +253,55 @@
         // --- Central Data Config (No more socials array) ---
         const config = {
             profile: {
-                name: "Abdulaziz",
+                name: "Abdulaziz Sukhrobjonov",
                 verified: true,
-                bio: "Software Engineer & Designer. Building digital products with clean code and minimalist interfaces.",
-                avatarUrl: "./profile.jpg?v=4" // Bumped cache param just in case
+                bio: "Software Engineer shipping full-stack products — web, IoT, and Telegram platforms. Currently open to new opportunities.",
+                avatarUrl: "./profile.jpg?v=4"
             },
             links: [
                 {
-                    title: "Portfolio & Case Studies",
-                    subtitle: "My recent development projects",
-                    url: "https://t.me/abdulazeez_ai",
-                    icon: "briefcase",
-                    colorClass: "from-blue-500 to-cyan-400", // Gradient accent options
+                    title: "Projects",
+                    subtitle: "Selected work — full-stack, IoT, bots",
+                    url: "./projects.html",
+                    icon: "layout-grid",
+                    colorClass: "from-violet-500 to-fuchsia-500",
+                    highlight: true,
+                    internal: true,
                 },
                 {
-                    title: "GitHub Profile",
-                    subtitle: "Open source contributions",
+                    title: "LinkedIn",
+                    subtitle: "Professional profile",
+                    url: "https://www.linkedin.com/in/sukhrobjonov02/",
+                    svgIcon: `<svg viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.23 0Z"/></svg>`,
+                    colorClass: "from-sky-600 to-blue-700",
+                },
+                {
+                    title: "GitHub",
+                    subtitle: "Code, open source, experiments",
                     url: "https://github.com/Sukhrobjonov02",
-                    icon: "github",
+                    svgIcon: `<svg viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.4 7.86 10.93.57.11.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.9-.39.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.67.79.56C20.22 21.42 23.5 17.1 23.5 12.02 23.5 5.66 18.35.5 12 .5Z"/></svg>`,
                     colorClass: "from-slate-700 to-slate-900 dark:from-slate-500 dark:to-slate-300",
                 },
                 {
-                    title: "Support my work",
-                    subtitle: "Buy me a coffee",
-                    url: "https://buymeacoffee.com/sukhrobjonov02",
-                    icon: "coffee",
-                    highlight: true, // Special styling
-                    colorClass: "from-amber-400 to-orange-500",
+                    title: "Telegram Channel",
+                    subtitle: "@abdulazeez_ai — notes & builds",
+                    url: "https://t.me/abdulazeez_ai",
+                    icon: "megaphone",
+                    colorClass: "from-sky-500 to-cyan-400",
+                },
+                {
+                    title: "Telegram DM",
+                    subtitle: "@Sukhrobjonov02 — fastest way to reach me",
+                    url: "https://t.me/Sukhrobjonov02",
+                    icon: "send",
+                    colorClass: "from-blue-500 to-indigo-500",
+                },
+                {
+                    title: "Email",
+                    subtitle: "sukhrobjonov02@gmail.com",
+                    url: "mailto:sukhrobjonov02@gmail.com",
+                    icon: "mail",
+                    colorClass: "from-rose-500 to-pink-500",
                 }
             ]
         };
@@ -299,8 +333,10 @@
             config.links.forEach((link, index) => {
                 const a = document.createElement('a');
                 a.href = link.url;
-                a.target = "_blank";
-                a.rel = "noreferrer noopener";
+                if (!link.internal) {
+                    a.target = "_blank";
+                    a.rel = "noreferrer noopener";
+                }
 
                 // Animation delay
                 const delayClass = `delay-${(index % 3 + 1) * 100}`;
@@ -331,7 +367,7 @@
 
                 const iconBox = document.createElement('div');
                 iconBox.className = `flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${link.colorClass} text-white shadow-md transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110`;
-                iconBox.innerHTML = `<i data-lucide="${link.icon}" class="h-6 w-6"></i>`;
+                iconBox.innerHTML = link.svgIcon ? link.svgIcon : `<i data-lucide="${link.icon}" class="h-6 w-6"></i>`;
                 leftSide.appendChild(iconBox);
 
                 const textBox = document.createElement('div');
