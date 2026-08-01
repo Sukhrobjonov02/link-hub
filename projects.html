@@ -450,7 +450,7 @@
                 year: "2025",
                 scope: "IoT · Full-stack · Mobile",
                 links: [
-                    { label: "Live demo", url: "https://railway-inspection-six.vercel.app", icon: "external-link", primary: true }
+                    { label: "Live demo", url: "https://railvision.uz", icon: "external-link", primary: true }
                 ],
                 demo: {
                     label: "Demo access",
@@ -501,28 +501,29 @@
                 ]
             },
             {
-                name: "day.note",
-                tagline: "Minimalist task tracker living inside Telegram.",
-                icon: "sticky-note",
-                color: "from-amber-400 to-yellow-500",
-                year: "2025",
-                scope: "Telegram Mini App",
+                name: "Minder",
+                tagline: "Telegram Mini App storefront for children's developmental toys.",
+                icon: "store",
+                color: "from-violet-500 to-purple-500",
+                year: "2026",
+                scope: "Telegram Mini App · E-commerce",
                 links: [
-                    { label: "Open bot", url: "https://t.me/daynote_app_bot", icon: "send", primary: true }
+                    { label: "Live site", url: "https://minder-psi.vercel.app", icon: "external-link", primary: true }
                 ],
                 description:
-                    "A Telegram Mini App (TMA) that makes daily task tracking frictionless — no install, no account, just open it inside Telegram and start writing. Tagline: \"Noted. Done.\"",
+                    "A toy store built for how commerce actually works locally: no online payment gateway. The customer browses and orders inside Telegram, the order lands in the admin's chat instantly, and an operator calls back to arrange payment and Yandex delivery. Products are curated around mental, physical, and moral development.",
                 features: [
-                    "Runs natively inside Telegram via @tma.js/sdk-react",
-                    "Firebase Auth tied to the Telegram user — zero-signup flow",
-                    "Realtime Firestore sync across user's devices",
-                    "Browser fallback with deep link back into the TMA",
-                    "Framer Motion micro-interactions on list changes",
-                    "Custom typographic logo and accent system (Outfit + yellow dot)"
+                    "Full store flow: category filter → product page → cart → checkout",
+                    "Orders posted straight to the admin's Telegram chat on submit",
+                    "Password-protected admin panel: product CRUD and order status",
+                    "Telegram initData signature verification for Mini App auth",
+                    "Vercel Blob image uploads with Drizzle-managed Postgres schema",
+                    "Seed script and generated migrations for reproducible setup"
                 ],
                 stack: [
                     "Next.js 16", "React 19", "TypeScript", "Tailwind v4",
-                    "@tma.js/sdk-react", "Firebase", "Framer Motion"
+                    "Drizzle ORM", "Neon Postgres", "Vercel Blob",
+                    "Telegram WebApp SDK", "Zod"
                 ]
             },
             {
