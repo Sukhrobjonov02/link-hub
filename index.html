@@ -1,427 +1,894 @@
 <!DOCTYPE html>
-<html lang="en" class="antialiased dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulaziz · Software Engineer</title>
-    <meta name="description" content="Software Engineer shipping AI-powered web products, Telegram bots and full-stack platforms. Selected projects, GitHub and contact.">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Abdulaziz · Software Engineer">
-    <meta property="og:description" content="Selected projects, GitHub, and contact. Full-stack, IoT, Telegram platforms.">
+    <title>Abdulaziz Sukhrobjonov · Full-Stack &amp; AI Engineer</title>
+    <meta name="description" content="Full-stack and AI engineer in Tashkent. I build AI products, client platforms and Telegram bots, and keep them running in production.">
+    <meta property="og:title" content="Abdulaziz Sukhrobjonov · Full-Stack & AI Engineer">
+    <meta property="og:description" content="AI products, full-stack platforms and Telegram bots. Experience, projects and contact.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="./profile.jpg">
+    <meta property="og:url" content="https://www.sukhrobjonov02.me/">
+    <meta property="og:image" content="https://www.sukhrobjonov02.me/profile.jpg">
+    <meta name="theme-color" content="#ffffff">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Google Fonts: Outfit (More modern and rounded than Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            400: '#9b87f5',
-                            500: '#7E69AB',
-                            600: '#6E59A5',
-                        },
-                        glass: {
-                            light: 'rgba(255, 255, 255, 0.7)',
-                            dark: 'rgba(20, 20, 25, 0.65)',
-                            borderLight: 'rgba(255, 255, 255, 0.5)',
-                            borderDark: 'rgba(255, 255, 255, 0.1)',
-                        }
-                    },
-                    animation: {
-                        'blob': 'blob 10s infinite',
-                        'blob-reverse': 'blob-reverse 12s infinite',
-                        'spin-slow': 'spin 8s linear infinite',
-                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        'blob-reverse': {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(-30px, 50px) scale(1.2)' },
-                            '66%': { transform: 'translate(20px, -20px) scale(0.8)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                },
-            },
-        }
+        document.documentElement.classList.add('js');
+        try {
+            const t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+        } catch (e) { }
     </script>
+
     <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #18181b;
+            --text: #3f3f46;
+            --muted: #71717a;
+            --faint: #a1a1aa;
+            --line: #ececee;
+            --soft: #f6f6f7;
+            --chip: #f1f1f3;
+            --live: #22c55e;
+            --btn-top: #3a3a3f;
+            --btn-bottom: #1d1d20;
+            --btn-text: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.82);
+            color-scheme: light;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0b0b0c;
+                --fg: #f2f2f3;
+                --text: #c4c4c9;
+                --muted: #8e8e96;
+                --faint: #5f5f66;
+                --line: #1f1f23;
+                --soft: #131315;
+                --chip: #1a1a1d;
+                --btn-top: #f4f4f5;
+                --btn-bottom: #d4d4d8;
+                --btn-text: #18181b;
+                --nav-bg: rgba(11, 11, 12, 0.82);
+                color-scheme: dark;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0b0b0c;
+            --fg: #f2f2f3;
+            --text: #c4c4c9;
+            --muted: #8e8e96;
+            --faint: #5f5f66;
+            --line: #1f1f23;
+            --soft: #131315;
+            --chip: #1a1a1d;
+            --btn-top: #f4f4f5;
+            --btn-bottom: #d4d4d8;
+            --btn-text: #18181b;
+            --nav-bg: rgba(11, 11, 12, 0.82);
+            color-scheme: dark;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
         body {
-            /* Smooth transitions */
-            transition: background-color 0.5s ease;
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-size: 15px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
-        /* Glassmorphism Classes */
-        .glass-panel {
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+        a { color: inherit; text-decoration: none; }
+
+        ::selection { background: var(--fg); color: var(--bg); }
+
+        .wrap { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+        .mono {
+            font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
         }
 
-        /* Card Hover Effects */
-        .link-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .sig { font-family: 'Mrs Saint Delafield', cursive; color: var(--fg); line-height: 1; font-weight: 400; }
+
+        /* Nav */
+        .nav {
+            position: sticky; top: 0; z-index: 20;
+            background: var(--nav-bg);
+            backdrop-filter: saturate(180%) blur(12px);
+            -webkit-backdrop-filter: saturate(180%) blur(12px);
+            border-bottom: 1px solid transparent;
+            transition: border-color .2s ease;
+        }
+        .nav.scrolled { border-bottom-color: var(--line); }
+        .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .nav .logo { font-size: 34px; padding-top: 6px; }
+        .nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 4px; }
+        .nav ul a, .nav button {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 10px; border-radius: 8px;
+            font-size: 14px; color: var(--muted);
+            transition: color .15s ease, background-color .15s ease;
+        }
+        .nav ul a:hover, .nav button:hover { color: var(--fg); background: var(--soft); }
+        .nav svg { width: 15px; height: 15px; }
+        .nav button { border: 0; background: none; cursor: pointer; font: inherit; }
+
+        /* Hero */
+        .hero { padding: 96px 0 24px; }
+        .status { display: inline-flex; align-items: center; gap: 8px; }
+        .status .dot {
+            width: 7px; height: 7px; border-radius: 50%; background: var(--live);
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, .5);
+            animation: pulse 2.4s ease-out infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, .45); }
+            70% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .hero h1 {
+            margin: 18px 0 0;
+            color: var(--fg);
+            font-size: clamp(27px, 5.2vw, 34px);
+            line-height: 1.22;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        .avatar {
+            display: inline-block;
+            width: 1.3em; height: 1.3em;
+            margin: 0 .12em -0.28em;
+            border-radius: 10px;
+            object-fit: cover;
+            background: #b6f05a;
+            transform: rotate(-6deg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+            transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+        }
+        .hero h1:hover .avatar { transform: rotate(0deg) scale(1.06); }
+        .hero p.lead { margin: 14px 0 0; color: var(--muted); font-size: 15.5px; }
+        .ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 30px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            height: 40px; padding: 0 16px; border-radius: 9px;
+            font-size: 14px; font-weight: 500;
+            color: var(--btn-text);
+            background: linear-gradient(180deg, var(--btn-top), var(--btn-bottom));
+            border: 1px solid var(--btn-bottom);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 1px 2px rgba(0, 0, 0, .18);
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+        .btn:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 4px 12px rgba(0, 0, 0, .16); }
+        .btn:active { transform: translateY(0); }
+        .btn.ghost {
+            color: var(--fg); background: var(--bg);
+            border-color: var(--line); box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+        }
+        .btn.ghost:hover { background: var(--soft); }
+        .btn svg { width: 15px; height: 15px; }
+
+        /* Worked with */
+        .clients { padding-top: 72px; }
+        .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 18px; }
+        .logo-mark {
+            display: inline-flex; align-items: center; gap: 7px;
+            color: var(--fg); font-weight: 600; font-size: 16.5px; letter-spacing: -0.01em;
+            opacity: .82; transition: opacity .15s ease;
+        }
+        a.logo-mark:hover { opacity: 1; }
+        .logo-mark svg { width: 19px; height: 19px; stroke-width: 2.2; }
+
+        /* Sections */
+        .sec { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding-top: 80px; }
+        .sec > .mono { padding-top: 2px; }
+        .sec p { margin: 0 0 18px; }
+        .sec p:last-child { margin-bottom: 0; }
+        .sec strong { color: var(--fg); font-weight: 500; }
+
+        .signoff { margin-top: 30px; }
+        .signoff .sig { font-size: 48px; display: block; transform: rotate(-4deg); transform-origin: left; }
+        .signoff span.name { display: block; margin-top: 8px; font-size: 13.5px; color: var(--muted); }
+
+        /* Timeline rows */
+        .rows { display: flex; flex-direction: column; gap: 30px; }
+        .row { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 16px; }
+        .row .when { font-size: 13.5px; color: var(--faint); font-variant-numeric: tabular-nums; padding-top: 1px; }
+        .row h3 { margin: 0; font-size: 15px; font-weight: 500; color: var(--fg); line-height: 1.45; }
+        .row .org { color: var(--muted); font-size: 14px; }
+        .row .desc { margin: 6px 0 0; font-size: 14.5px; }
+        .stack { margin-top: 8px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--faint); letter-spacing: 0; }
+
+        /* Projects */
+        .projects { display: flex; flex-direction: column; }
+        .project { padding: 22px 0; border-top: 1px solid var(--line); }
+        .project:first-child { border-top: 0; padding-top: 0; }
+        .p-head { display: flex; gap: 14px; align-items: flex-start; }
+        .p-icon {
+            flex: none; display: grid; place-items: center;
+            width: 38px; height: 38px; border-radius: 10px;
+            background: var(--soft); border: 1px solid var(--line); color: var(--fg);
+        }
+        .p-icon svg { width: 18px; height: 18px; }
+        .p-title { flex: 1; min-width: 0; }
+        .p-title .top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+        .p-title h3 { margin: 0; font-size: 15px; font-weight: 500; color: var(--fg); }
+        .p-title .year { font-size: 13px; color: var(--faint); font-variant-numeric: tabular-nums; flex: none; }
+        .p-title .tag { margin: 2px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+        .p-body { margin: 12px 0 0 52px; }
+        .p-body .desc { margin: 0; font-size: 14.5px; }
+        .badge {
+            display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 999px;
+            font-size: 11px; font-weight: 500; color: var(--muted); background: var(--chip); vertical-align: 2px;
+        }
+        .p-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; align-items: center; }
+        .p-links a {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 13.5px; color: var(--fg); font-weight: 500;
+            border-bottom: 1px solid var(--line); padding-bottom: 1px;
+            transition: border-color .15s ease;
+        }
+        .p-links a:hover { border-bottom-color: var(--fg); }
+        .p-links svg { width: 13px; height: 13px; }
+        details.more summary {
+            cursor: pointer; list-style: none;
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 13.5px; color: var(--muted);
+        }
+        details.more summary::-webkit-details-marker { display: none; }
+        details.more summary:hover { color: var(--fg); }
+        details.more summary svg { width: 13px; height: 13px; transition: transform .2s ease; }
+        details.more[open] summary svg { transform: rotate(180deg); }
+        details.more ul { margin: 12px 0 0; padding-left: 18px; font-size: 14px; }
+        details.more li { margin: 3px 0; }
+        details.more li::marker { color: var(--faint); }
+        .demo { margin-top: 10px; font-size: 13px; color: var(--muted); }
+        .demo code { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12.5px; color: var(--fg); background: var(--chip); padding: 1px 6px; border-radius: 5px; }
+
+        /* Lists */
+        .list { display: flex; flex-direction: column; }
+        .list a, .list div.item {
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            padding: 11px 0; border-top: 1px solid var(--line); font-size: 14.5px;
+        }
+        .list > :first-child { border-top: 0; padding-top: 0; }
+        .list .l { display: flex; align-items: center; gap: 10px; color: var(--fg); min-width: 0; }
+        .list .l svg { width: 16px; height: 16px; color: var(--muted); flex: none; }
+        .list .r { color: var(--faint); font-size: 13.5px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+        .list .r svg { width: 14px; height: 14px; transition: transform .15s ease; }
+        .list a:hover .r { color: var(--fg); }
+        .list a:hover .r svg { transform: translate(2px, -2px); }
+
+        .skills { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 10px 16px; font-size: 14.5px; }
+        .skills dt { color: var(--faint); font-size: 13.5px; }
+        .skills dd { margin: 0; }
+
+        footer { padding: 96px 0 56px; }
+        footer .wrap { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding-top: 28px; }
+        footer .sig { font-size: 40px; }
+        footer small { color: var(--faint); font-size: 13px; }
+
+        /* Entrance */
+        .js .reveal { opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .6s cubic-bezier(.2, .8, .2, 1); }
+        .js .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .js .reveal { opacity: 1; transform: none; transition: none; }
+            .status .dot { animation: none; }
         }
 
-        .link-card:hover {
-            transform: translateY(-6px) scale(1.02);
-        }
-
-        .link-card:active {
-            transform: scale(0.98);
-        }
-
-        /* Animated Gradient Ring for Avatar */
-        .gradient-ring {
-            background: linear-gradient(to right, #9b87f5, #f06292, #64b5f6, #9b87f5);
-            background-size: 300% 300%;
-            animation: ringGlow 4s ease infinite;
-        }
-
-        @keyframes ringGlow {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* Floating elements setup */
-        .bg-mesh {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            background-color: #f8fafc;
-            /* Light mode bg */
-            transition: background-color 0.5s ease;
-        }
-
-        .dark .bg-mesh {
-            background-color: #09090b;
-            /* Dark mode bg */
-        }
-
-        /* Toast animation */
-        #toast {
-            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            transform: translate(-50%, 20px) scale(0.9);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        #toast.show {
-            transform: translate(-50%, 0) scale(1);
-            opacity: 1;
-        }
-
-        .delay-100 {
-            animation-delay: 100ms;
-        }
-
-        .delay-200 {
-            animation-delay: 200ms;
-        }
-
-        .delay-300 {
-            animation-delay: 300ms;
+        @media (max-width: 640px) {
+            .nav ul .label { display: none; }
+            .nav ul a, .nav button { padding: 8px; }
+            .hero { padding-top: 64px; }
+            .sec { grid-template-columns: 1fr; gap: 14px; padding-top: 64px; }
+            .row, .skills { grid-template-columns: 1fr; gap: 2px; }
+            .skills dd { margin-bottom: 10px; }
+            .p-body { margin-left: 0; }
         }
     </style>
 </head>
 
-<body class="min-h-screen text-slate-800 dark:text-slate-100 selection:bg-brand-500/30 selection:text-brand-500">
-
-    <!-- WOW Background Elements (Animated Blobs) -->
-    <div class="bg-mesh">
-        <!-- Top right blob -->
-        <div
-            class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-400/20 dark:bg-brand-400/20 blur-[80px] animate-blob">
+<body>
+    <nav class="nav" id="nav">
+        <div class="wrap">
+            <a href="#top" class="logo sig" aria-label="Abdulaziz Sukhrobjonov, back to top">Abdulaziz</a>
+            <ul>
+                <li><a href="#about"><i data-lucide="user-round"></i><span class="label">About</span></a></li>
+                <li><a href="#experience"><i data-lucide="briefcase"></i><span class="label">Experience</span></a></li>
+                <li><a href="#projects"><i data-lucide="layout-grid"></i><span class="label">Projects</span></a></li>
+                <li><a href="#contact"><i data-lucide="at-sign"></i><span class="label">Contact</span></a></li>
+                <li><button id="theme" aria-label="Toggle colour theme"><i data-lucide="sun-moon"></i></button></li>
+            </ul>
         </div>
-        <!-- Bottom left blob -->
-        <div
-            class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-400/20 dark:bg-purple-600/20 blur-[100px] animate-blob-reverse">
-        </div>
-        <!-- Center blob -->
-        <div
-            class="absolute top-[30%] left-[20%] w-[400px] h-[400px] rounded-full bg-pink-400/20 dark:bg-pink-600/10 blur-[80px] animate-blob delay-2000">
-        </div>
-    </div>
+    </nav>
 
-    <!-- Controls -->
-    <div class="fixed top-6 right-6 flex gap-3 z-50 animate-fade-in-up">
-        <button id="themeToggle"
-            class="flex h-12 w-12 items-center justify-center rounded-full glass-panel bg-white/50 dark:bg-black/40 border border-white/40 dark:border-white/10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white shadow-lg transition-all hover:scale-110 active:scale-95"
-            aria-label="Toggle theme">
-            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
-            <i data-lucide="sun" class="h-5 w-5 block dark:hidden"></i>
-        </button>
-        <button id="shareBtn"
-            class="flex h-12 px-5 items-center justify-center gap-2 rounded-full glass-panel bg-white/50 dark:bg-black/40 border border-white/40 dark:border-white/10 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white shadow-lg transition-all hover:scale-110 hover:-translate-y-1 active:scale-95 font-medium">
-            <i data-lucide="share-2" class="h-4 w-4"></i>
-            <span>Share</span>
-        </button>
-    </div>
-
-    <!-- Main Container -->
-    <main class="relative w-full max-w-[580px] px-5 pt-32 pb-20 mx-auto flex flex-col items-center z-10">
-
-        <!-- Profile Header -->
-        <header
-            class="flex flex-col items-center text-center mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
-            <!-- Avatar with Glow -->
-            <div class="relative mb-6 group">
-                <div
-                    class="absolute -inset-1 rounded-full gradient-ring opacity-70 group-hover:opacity-100 transition duration-500 blur-sm">
-                </div>
-                <div
-                    class="relative h-28 w-28 rounded-full overflow-hidden border-2 border-white dark:border-black bg-slate-200 dark:bg-slate-800 shadow-xl">
-                    <img id="avatar"
-                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        src="" alt="Profile picture">
-                </div>
+    <main class="wrap" id="top">
+        <header class="hero">
+            <div class="status mono"><span class="dot"></span>Open to work</div>
+            <h1>Hi, I'm <img class="avatar" src="./profile.jpg?v=4" alt="Abdulaziz" width="44" height="44"> Abdulaziz Sukhrobjonov<br>Full-Stack &amp; AI Engineer</h1>
+            <p class="lead">I build AI products and full-stack platforms, and keep them running in production.</p>
+            <div class="ctas">
+                <a class="btn" href="https://t.me/Sukhrobjonov02" target="_blank" rel="noopener"><i data-lucide="send"></i>Message me</a>
+                <a class="btn ghost" href="#projects">See projects</a>
             </div>
-
-            <div class="flex items-center gap-2 mb-2">
-                <h1 id="name" class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white"></h1>
-            </div>
-
-            <div id="location" class="inline-flex items-center gap-1.5 mb-3 text-[13px] font-medium text-slate-500 dark:text-slate-400">
-                <i data-lucide="map-pin" class="h-3.5 w-3.5"></i>
-                <span>Tashkent, Uzbekistan</span>
-            </div>
-
-            <p id="bio" class="text-[16px] text-slate-600 dark:text-slate-300 max-w-[440px] leading-relaxed font-light">
-            </p>
         </header>
 
-        <!-- Links Container (Removed bottom social icons as requested) -->
-        <nav id="links-container" class="w-full flex flex-col gap-4">
-            <!-- Buttons injected via JS -->
-        </nav>
+        <section class="clients" aria-label="Worked with">
+            <div class="mono">Worked with</div>
+            <div class="logos">
+                <span class="logo-mark"><i data-lucide="sun"></i>JAFA Energy</span>
+                <a class="logo-mark" href="https://tanker.uz" target="_blank" rel="noopener"><i data-lucide="factory"></i>Tanker</a>
+                <a class="logo-mark" href="https://lisan.uz" target="_blank" rel="noopener"><i data-lucide="languages"></i>lisan.uz</a>
+                <span class="logo-mark"><i data-lucide="sparkles"></i>DreamLogic</span>
+                <span class="logo-mark"><i data-lucide="flask-conical"></i>Novalab</span>
+            </div>
+        </section>
 
+        <section class="sec reveal" id="about">
+            <div class="mono">About me</div>
+            <div>
+                <p>I'm a software engineer in Tashkent who ships products end to end: AI-powered web platforms, client sites with their own CMS, Telegram bots and IoT systems. Most of my work is in TypeScript and Python, with Next.js, NestJS and PostgreSQL underneath.</p>
+                <p>I work in an AI-assisted way. Coding agents write much of the code; I own the architecture, the review and the tests. Since September 2026 I've been the only engineer on <strong>IUMS</strong>, a 95,000-line solar-fleet monitoring platform for JAFA Energy. Recent work includes <strong>lisan.uz</strong>, where AI grades every written exam task, two five-language industrial sites for one client, and <strong>Spam Sekura</strong>, a paid spam filter for Telegram groups.</p>
+                <p>Open to freelance projects and engineering roles in AI, full-stack and backend.</p>
+                <div class="signoff">
+                    <span class="sig">Abdulaziz</span>
+                    <span class="name">Abdulaziz Sukhrobjonov</span>
+                </div>
+            </div>
+        </section>
 
+        <section class="sec reveal" id="experience">
+            <div class="mono">Experience</div>
+            <div class="rows">
+                <div class="row">
+                    <div class="when">Sep 2026 – now</div>
+                    <div>
+                        <h3>Sole Maintainer</h3>
+                        <div class="org">IUMS · JAFA Energy · Remote</div>
+                        <p class="desc">Took over a 95,000-line monitoring platform for a solar fleet as its only engineer. I ship the fixes and features and look after migrations, backups and access control.</p>
+                        <div class="stack">React 19 · NestJS · PostgreSQL · Docker</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="when">Mar 2026 – now</div>
+                    <div>
+                        <h3>Freelance Full-Stack &amp; AI Developer</h3>
+                        <div class="org">Self-employed · Upwork 5.0 · Remote</div>
+                        <p class="desc">AI features, client platforms and Telegram bots, from first call to production.</p>
+                        <div class="stack">Next.js · Supabase · Gemini · Aiogram</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="when">Aug – Nov 2023</div>
+                    <div>
+                        <h3>Software Engineer Intern</h3>
+                        <div class="org">DreamLogic · Tashkent</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="when">Nov – Dec 2021</div>
+                    <div>
+                        <h3>Software Engineer Intern</h3>
+                        <div class="org">Novalab Tech · Tashkent</div>
+                        <div class="stack">PostgreSQL · Swagger API</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec reveal" id="projects">
+            <div class="mono">Projects</div>
+            <div class="projects" id="project-list"></div>
+        </section>
+
+        <section class="sec reveal" id="skills">
+            <div class="mono">Stack</div>
+            <dl class="skills">
+                <dt>Languages</dt><dd>TypeScript, Python, JavaScript, Go, SQL</dd>
+                <dt>Frontend</dt><dd>Next.js, React, Tailwind CSS, shadcn/ui, Expo</dd>
+                <dt>Backend</dt><dd>NestJS, Django, Flask, Aiogram, Telethon</dd>
+                <dt>AI</dt><dd>AI SDK, Gemini, RAG with pgvector, evaluation sets</dd>
+                <dt>Data &amp; infra</dt><dd>PostgreSQL, Supabase, Neon, Redis, Prisma, Drizzle, Docker, Vercel</dd>
+            </dl>
+        </section>
+
+        <section class="sec reveal" id="education">
+            <div class="mono">Education</div>
+            <div class="rows">
+                <div class="row">
+                    <div class="when">2020 – 2023</div>
+                    <div>
+                        <h3>Turin Polytechnic University in Tashkent</h3>
+                        <div class="org">Bachelor's degree, Computer Engineering</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="when">Feb – Jul 2022</div>
+                    <div>
+                        <h3>Politecnico di Torino</h3>
+                        <div class="org">Exchange semester, Computer Engineering</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec reveal" id="certificates">
+            <div class="mono">Certificates</div>
+            <div class="list">
+                <a href="https://www.udacity.com/certificate/e/86a1ac36-c293-11ed-8d2f-eb4d13ab02e1" target="_blank" rel="noopener">
+                    <span class="l"><i data-lucide="award"></i>Full Stack Web Developer Nanodegree</span>
+                    <span class="r">Udacity · 2023<i data-lucide="arrow-up-right"></i></span>
+                </a>
+                <a href="https://www.coursera.org/account/accomplishments/verify/H43HXQXRCKD2" target="_blank" rel="noopener">
+                    <span class="l"><i data-lucide="award"></i>Meta Back-End Developer: Version Control</span>
+                    <span class="r">Meta · 2022<i data-lucide="arrow-up-right"></i></span>
+                </a>
+                <a href="https://www.hackerrank.com/certificates/12aabf84ac12" target="_blank" rel="noopener">
+                    <span class="l"><i data-lucide="award"></i>SQL (Basic)</span>
+                    <span class="r">HackerRank · 2022<i data-lucide="arrow-up-right"></i></span>
+                </a>
+                <a href="https://www.hackerrank.com/certificates/4055d307b0d3" target="_blank" rel="noopener">
+                    <span class="l"><i data-lucide="award"></i>Python (Basic)</span>
+                    <span class="r">HackerRank · 2022<i data-lucide="arrow-up-right"></i></span>
+                </a>
+            </div>
+        </section>
+
+        <section class="sec reveal" id="contact">
+            <div class="mono">Contact</div>
+            <div>
+                <p>The fastest way to reach me is Telegram. I usually reply within a few hours, Tashkent time (UTC+5).</p>
+                <div class="list" style="margin-top: 18px;">
+                    <a href="https://t.me/Sukhrobjonov02" target="_blank" rel="noopener">
+                        <span class="l"><i data-lucide="send"></i>Telegram</span>
+                        <span class="r">@Sukhrobjonov02<i data-lucide="arrow-up-right"></i></span>
+                    </a>
+                    <a href="mailto:sukhrobjonov02@gmail.com">
+                        <span class="l"><i data-lucide="mail"></i>Email</span>
+                        <span class="r">sukhrobjonov02@gmail.com<i data-lucide="arrow-up-right"></i></span>
+                    </a>
+                    <a href="https://github.com/Sukhrobjonov02" target="_blank" rel="noopener">
+                        <span class="l"><i data-lucide="github"></i>GitHub</span>
+                        <span class="r">Sukhrobjonov02<i data-lucide="arrow-up-right"></i></span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sukhrobjonov02/" target="_blank" rel="noopener">
+                        <span class="l"><i data-lucide="linkedin"></i>LinkedIn</span>
+                        <span class="r">sukhrobjonov02<i data-lucide="arrow-up-right"></i></span>
+                    </a>
+                    <a href="https://t.me/abdulazeez_ai" target="_blank" rel="noopener">
+                        <span class="l"><i data-lucide="megaphone"></i>Telegram channel</span>
+                        <span class="r">@abdulazeez_ai<i data-lucide="arrow-up-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Beautiful Toast Notification -->
-    <div id="toast"
-        class="fixed bottom-8 left-1/2 flex items-center gap-3 px-6 py-4 rounded-full glass-panel bg-white/80 dark:bg-black/60 border border-white/50 dark:border-white/10 shadow-2xl text-slate-800 dark:text-white font-medium whitespace-nowrap">
-        <div
-            class="flex items-center justify-center h-8 w-8 rounded-full bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400">
-            <i data-lucide="check" class="h-4 w-4"></i>
+    <footer>
+        <div class="wrap">
+            <span class="sig">Abdulaziz</span>
+            <small>© <span id="year">2026</span> · Tashkent</small>
         </div>
-        <span>Link copied to clipboard!</span>
-    </div>
+    </footer>
 
     <script>
-        // --- Central Data Config (No more socials array) ---
-        const config = {
-            profile: {
-                name: "Abdulaziz Sukhrobjonov",
-                verified: true,
-                bio: "Software Engineer shipping AI-powered web products, Telegram bots and full-stack platforms. Open to new projects.",
-                avatarUrl: "./profile.jpg?v=4"
+        const projects = [
+            {
+                "name": "lisan.uz",
+                "tagline": "Arabic CEFR exam prep where AI grades every written task.",
+                "icon": "languages",
+                "year": "2026",
+                "links": [
+                    {
+                        "label": "Live site",
+                        "url": "https://lisan.uz",
+                        "icon": "external-link",
+                        "primary": true
+                    }
+                ],
+                "description": "Daily six-part lessons across four CEFR courses. Gemini scores each written answer per criterion (grammar, vocabulary, spelling, fluency) and returns the corrected sentence with the reason it was wrong. Courses unlock once their prerequisites are complete.",
+                "features": [
+                    "AI grading per criterion with corrections and explanations",
+                    "Course prerequisites: a course opens only after the ones before it",
+                    "Streaks, XP and certificates",
+                    "Google sign-in and promo-code access",
+                    "Admin panel for content and enrollments"
+                ],
+                "stack": [
+                    "Next.js",
+                    "TypeScript",
+                    "Prisma",
+                    "PostgreSQL",
+                    "NextAuth",
+                    "Gemini"
+                ]
             },
-            links: [
-                {
-                    title: "Projects",
-                    subtitle: "Selected work: AI, full-stack, IoT, bots",
-                    url: "./projects.html",
-                    icon: "layout-grid",
-                    colorClass: "from-violet-500 to-fuchsia-500",
-                    highlight: true,
-                    internal: true,
+            {
+                "name": "Spam Sekura",
+                "tagline": "Paid, self-serve spam protection for Telegram groups.",
+                "icon": "shield-check",
+                "year": "2026",
+                "links": [
+                    {
+                        "label": "Open bot",
+                        "url": "https://t.me/spamsekura_bot",
+                        "icon": "send",
+                        "primary": true
+                    }
+                ],
+                "description": "A group owner adds the bot and gets a 14-day trial, then pays by the calendar month. It checks new members, deletes flirt, scam and spam messages, and never punishes on a weak signal: doubtful cases go to the owner privately with a one-tap decision.",
+                "features": [
+                    "Profile photo and bio checks on join, first message and every 24 hours",
+                    "Gemini for flirt and scam messages, local NudeNet for images",
+                    "Owner alerts in private chat, the group sees almost nothing",
+                    "Optional ad-free mode for links and channel reposts",
+                    "Trial rules, monthly billing and receipt approval in the bot"
+                ],
+                "stack": [
+                    "Python 3.12",
+                    "Aiogram 3",
+                    "SQLAlchemy 2",
+                    "PostgreSQL",
+                    "NudeNet",
+                    "Gemini"
+                ]
+            },
+            {
+                "name": "Onbo Assist",
+                "tagline": "AI support assistant inside a SaaS dashboard. Cites, then escalates.",
+                "icon": "message-square",
+                "year": "2026",
+                "links": [
+                    {
+                        "label": "Live demo",
+                        "url": "https://onbo-assist.vercel.app",
+                        "icon": "external-link",
+                        "primary": true
+                    }
+                ],
+                "description": "Answers from the product's own knowledge base, cites the article behind every answer, refuses when the source does not support one, and hands off to a human whose reply lands in the visitor's open thread.",
+                "features": [
+                    "Widget that embeds cross-origin and streams cited answers",
+                    "Knowledge base agents edit and re-index without code",
+                    "Inbox showing which chunks fed each answer",
+                    "Retrieval tuned against a 45-question evaluation set",
+                    "Deflection analytics; 568 tests"
+                ],
+                "stack": [
+                    "Next.js",
+                    "TypeScript",
+                    "AI SDK",
+                    "Gemini",
+                    "Supabase",
+                    "Vitest",
+                    "Playwright"
+                ]
+            },
+            {
+                "name": "Margin",
+                "tagline": "Ask a PDF a question; every answer marks the page it came from.",
+                "icon": "file-text",
+                "year": "2026",
+                "links": [
+                    {
+                        "label": "Live demo",
+                        "url": "https://margin-ashen.vercel.app",
+                        "icon": "external-link",
+                        "primary": true
+                    }
+                ],
+                "description": "A document-grounded assistant. Click a citation and the source opens at that page with the sentence highlighted. Passages below a calibrated similarity floor never reach the model, so it refuses instead of guessing.",
+                "features": [
+                    "Citations that open the exact passage",
+                    "Similarity floor that blocks weak context",
+                    "Refusal when the document has no answer",
+                    "368 tests"
+                ],
+                "stack": [
+                    "Next.js",
+                    "TypeScript",
+                    "AI SDK",
+                    "Gemini",
+                    "Neon Postgres",
+                    "pgvector",
+                    "Drizzle"
+                ]
+            },
+            {
+                "name": "Halden",
+                "tagline": "Describe a room, get a buyable look from a real catalogue.",
+                "icon": "sofa",
+                "year": "2026",
+                "links": [
+                    {
+                        "label": "Live demo",
+                        "url": "https://halden-bay.vercel.app",
+                        "icon": "external-link",
+                        "primary": true
+                    }
+                ],
+                "description": "The model may only choose from products retrieved for that request, enforced in the prompt, the response schema and a server-side check. Every price and dimension on screen comes from the database. Stripe Checkout in test mode.",
+                "features": [
+                    "Recommendations within budget, each with a reason",
+                    "Stripe Checkout with webhooks verified on the raw body",
+                    "Replayed webhooks never create a second order"
+                ],
+                "stack": [
+                    "Next.js",
+                    "TypeScript",
+                    "Neon Postgres",
+                    "Drizzle",
+                    "Stripe"
+                ]
+            },
+            {
+                "name": "Lisan Quiz",
+                "tagline": "Gamified multi-lingual quiz platform for organizations.",
+                "icon": "graduation-cap",
+                "year": "2025",
+                "status": "Paused",
+                "description": "A Kahoot-inspired language learning and assessment platform built for schools, training centers, and self-learners. Supports real-time quiz sessions, instant feedback, org-level role management, and full RTL Arabic experience alongside English.",
+                "features": [
+                    "Gamified quiz runner with timers, streaks, and live scoring",
+                    "Bulk question import from Excel (.xlsx/.xls) with validation",
+                    "Analytics: average scores, attempts, engagement, org health",
+                    "Multi-tenant orgs with Owner / Admin / Member roles & invites",
+                    "Full RTL Arabic + English localization via i18next",
+                    "Background processing for imports & notifications (BullMQ)"
+                ],
+                "stack": [
+                    "Next.js 14",
+                    "React",
+                    "TypeScript",
+                    "Tailwind",
+                    "shadcn/ui",
+                    "Framer Motion",
+                    "React Hook Form",
+                    "Zod",
+                    "TanStack Query",
+                    "NestJS",
+                    "Prisma",
+                    "PostgreSQL",
+                    "Redis",
+                    "BullMQ",
+                    "i18next"
+                ]
+            },
+            {
+                "name": "Railway Inspection",
+                "tagline": "RFID + IoT inspection system for railway infrastructure.",
+                "icon": "train-front",
+                "year": "2025",
+                "links": [
+                    {
+                        "label": "Live demo",
+                        "url": "https://railvision.uz",
+                        "icon": "external-link",
+                        "primary": true
+                    }
+                ],
+                "demo": {
+                    "label": "Demo access",
+                    "fields": [
+                        {
+                            "k": "Email",
+                            "v": "demo@railvision.uz"
+                        },
+                        {
+                            "k": "Password",
+                            "v": "RailDemo2026"
+                        }
+                    ]
                 },
-                {
-                    title: "LinkedIn",
-                    subtitle: "Professional profile",
-                    url: "https://www.linkedin.com/in/sukhrobjonov02/",
-                    svgIcon: `<svg viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.23 0Z"/></svg>`,
-                    colorClass: "from-sky-600 to-blue-700",
-                },
-                {
-                    title: "GitHub",
-                    subtitle: "Code, open source, experiments",
-                    url: "https://github.com/Sukhrobjonov02",
-                    svgIcon: `<svg viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.4 7.86 10.93.57.11.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.9-.39.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.67.79.56C20.22 21.42 23.5 17.1 23.5 12.02 23.5 5.66 18.35.5 12 .5Z"/></svg>`,
-                    colorClass: "from-slate-700 to-slate-900 dark:from-slate-500 dark:to-slate-300",
-                },
-                {
-                    title: "Telegram Channel",
-                    subtitle: "@abdulazeez_ai · notes & builds",
-                    url: "https://t.me/abdulazeez_ai",
-                    icon: "megaphone",
-                    colorClass: "from-sky-500 to-cyan-400",
-                },
-                {
-                    title: "Telegram DM",
-                    subtitle: "@Sukhrobjonov02 · fastest way to reach me",
-                    url: "https://t.me/Sukhrobjonov02",
-                    icon: "send",
-                    colorClass: "from-blue-500 to-indigo-500",
-                },
-                {
-                    title: "Email",
-                    subtitle: "sukhrobjonov02@gmail.com",
-                    url: "mailto:sukhrobjonov02@gmail.com",
-                    icon: "mail",
-                    colorClass: "from-rose-500 to-pink-500",
-                }
-            ]
-        };
-
-        // --- Theme Management ---
-        const themeToggle = document.getElementById('themeToggle');
-
-        if (localStorage.theme === 'light' || (!('theme' in localStorage) && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.remove('dark');
-        } else {
-            // Default to dark for that premium WOW effect
-            document.documentElement.classList.add('dark');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-        });
-
-        // --- Build UI ---
-        const buildUI = () => {
-            // Load Profile
-            document.getElementById('avatar').src = config.profile.avatarUrl;
-            document.getElementById('name').textContent = config.profile.name;
-            document.getElementById('bio').textContent = config.profile.bio;
-
-            // Load Links (Glassmorphism Cards)
-            const linksContainer = document.getElementById('links-container');
-            config.links.forEach((link, index) => {
-                const a = document.createElement('a');
-                a.href = link.url;
-                if (!link.internal) {
-                    a.target = "_blank";
-                    a.rel = "noreferrer noopener";
-                }
-
-                // Animation delay
-                const delayClass = `delay-${(index % 3 + 1) * 100}`;
-
-                // Glassmorphism classes combined with highlights
-                let cardClasses = `link-card flex items-center p-4 sm:p-5 w-full rounded-2xl glass-panel opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards] ${delayClass} border shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] group relative overflow-hidden `;
-
-                if (link.highlight) {
-                    cardClasses += `bg-slate-900/5 dark:bg-white/10 border-slate-900/10 dark:border-white/20 text-slate-900 dark:text-white`;
-                } else {
-                    cardClasses += `bg-white/60 dark:bg-black/40 border-white/60 dark:border-white/10 text-slate-800 dark:text-slate-100`;
-                }
-
-                a.className = cardClasses;
-
-                // Subtle background hover glow based on target brand colors
-                const glowHover = document.createElement('div');
-                glowHover.className = `absolute inset-0 bg-gradient-to-r ${link.colorClass} opacity-0 group-hover:opacity-[0.05] dark:group-hover:opacity-[0.1] transition-opacity duration-500`;
-                a.appendChild(glowHover);
-
-                // Content wrapper
-                const contentWrapper = document.createElement('div');
-                contentWrapper.className = "flex w-full items-center justify-between relative z-10";
-
-                // Icon + Text
-                const leftSide = document.createElement('div');
-                leftSide.className = "flex items-center gap-4 sm:gap-5";
-
-                const iconBox = document.createElement('div');
-                iconBox.className = `flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${link.colorClass} text-white shadow-md transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110`;
-                iconBox.innerHTML = link.svgIcon ? link.svgIcon : `<i data-lucide="${link.icon}" class="h-6 w-6"></i>`;
-                leftSide.appendChild(iconBox);
-
-                const textBox = document.createElement('div');
-                textBox.className = "flex flex-col text-left";
-
-                const title = document.createElement('h3');
-                title.className = "text-[16px] sm:text-[17px] font-semibold tracking-tight transition-colors duration-300";
-                title.textContent = link.title;
-                textBox.appendChild(title);
-
-                if (link.subtitle) {
-                    const subtitle = document.createElement('span');
-                    subtitle.className = "text-[13.5px] font-medium opacity-60 mt-0.5";
-                    subtitle.textContent = link.subtitle;
-                    textBox.appendChild(subtitle);
-                }
-
-                leftSide.appendChild(textBox);
-                contentWrapper.appendChild(leftSide);
-
-                // Right Arrow
-                const arrow = document.createElement('div');
-                arrow.className = "flex h-8 w-8 items-center justify-center rounded-full bg-slate-900/5 dark:bg-white/10 opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0";
-                arrow.innerHTML = `<i data-lucide="arrow-right" class="h-4 w-4"></i>`;
-                contentWrapper.appendChild(arrow);
-
-                a.appendChild(contentWrapper);
-                linksContainer.appendChild(a);
-            });
-
-            // Initialize Icons
-            lucide.createIcons();
-        };
-
-        // --- Toast System ---
-        const shareBtn = document.getElementById('shareBtn');
-        const toast = document.getElementById('toast');
-        let toastTimeout;
-
-        shareBtn.addEventListener('click', async () => {
-            if (navigator.share) {
-                try {
-                    await navigator.share({ title: 'Abdulaziz Links', url: window.location.href });
-                } catch (e) { }
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                clearTimeout(toastTimeout);
-                toast.classList.add('show');
-                toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+                "description": "An end-to-end inspection platform combining an ESP32 firmware with RFID + cellular modem, a React Native field app for inspectors, and a Next.js admin dashboard. Each piece of equipment carries a MIFARE 1K card; inspection events stream over LTE straight into Firebase.",
+                "features": [
+                    "ESP32 firmware: MFRC522 RFID reader + SIM7000 LTE uplink",
+                    "MIFARE 1K block-level layout for equipment ID, name, metadata",
+                    "Expo / React Native app for on-site inspectors (EAS builds)",
+                    "Next.js admin panel: equipment, inspections, users, roles",
+                    "Firebase Auth, Firestore, Storage, Cloud Functions (Node 22)",
+                    "Multi-carrier APN support (Ucell, Beeline) with fallbacks",
+                    "System flowcharts & ops docs for deployment in the field"
+                ],
+                "stack": [
+                    "ESP32",
+                    "Arduino/C++",
+                    "MFRC522 RFID",
+                    "SIM7000 LTE",
+                    "Expo",
+                    "React Native",
+                    "Next.js",
+                    "TypeScript",
+                    "Firebase",
+                    "Firestore",
+                    "Cloud Functions",
+                    "Tailwind"
+                ]
+            },
+            {
+                "name": "tanker.uz · tankermix.com",
+                "tagline": "Two industrial-equipment sites for one client, in five languages.",
+                "icon": "factory",
+                "year": "2026",
+                "links": [
+                    {
+                        "label": "tanker.uz",
+                        "url": "https://tanker.uz",
+                        "icon": "external-link",
+                        "primary": true
+                    },
+                    {
+                        "label": "tankermix.com",
+                        "url": "https://tankermix.com",
+                        "icon": "external-link"
+                    }
+                ],
+                "description": "Product catalogs and lead-gen sites for an industrial brand: crushers on tanker.uz and concrete plants on tankermix.com, from one codebase with separate databases and brands. The client's own team runs the content and SEO from a built-in admin.",
+                "features": [
+                    "Five languages: Uzbek Latin and Cyrillic, Russian, English, Chinese",
+                    "Admin CMS: products, projects, blog posts and leads",
+                    "SEO editor the client uses for page titles and descriptions",
+                    "Per-page Open Graph and Twitter cards",
+                    "Contact form to Telegram for real-time lead alerts",
+                    "Separate Supabase projects and brand tokens per site"
+                ],
+                "stack": [
+                    "Next.js",
+                    "TypeScript",
+                    "Tailwind",
+                    "next-intl",
+                    "Supabase",
+                    "Telegram Bot API",
+                    "Vercel"
+                ]
+            },
+            {
+                "name": "Minder",
+                "tagline": "Telegram Mini App storefront for children's developmental toys.",
+                "icon": "store",
+                "year": "2026",
+                "links": [
+                    {
+                        "label": "Live site",
+                        "url": "https://minder-psi.vercel.app",
+                        "icon": "external-link",
+                        "primary": true
+                    }
+                ],
+                "description": "A toy store built for how commerce actually works locally: no online payment gateway. The customer browses and orders inside Telegram, the order lands in the admin's chat instantly, and an operator calls back to arrange payment and Yandex delivery. Products are curated around mental, physical, and moral development.",
+                "features": [
+                    "Full store flow: category filter → product page → cart → checkout",
+                    "Orders posted straight to the admin's Telegram chat on submit",
+                    "Password-protected admin panel: product CRUD and order status",
+                    "Telegram initData signature verification for Mini App auth",
+                    "Vercel Blob image uploads with Drizzle-managed Postgres schema",
+                    "Seed script and generated migrations for reproducible setup"
+                ],
+                "stack": [
+                    "Next.js 16",
+                    "React 19",
+                    "TypeScript",
+                    "Tailwind v4",
+                    "Drizzle ORM",
+                    "Neon Postgres",
+                    "Vercel Blob",
+                    "Telegram WebApp SDK",
+                    "Zod"
+                ]
+            },
+            {
+                "name": "LahzaGet",
+                "tagline": "Telegram bot that rips Stories in highest quality, no app required.",
+                "icon": "download",
+                "year": "2025",
+                "links": [
+                    {
+                        "label": "Open bot",
+                        "url": "https://t.me/lahzaget_bot",
+                        "icon": "send",
+                        "primary": true
+                    }
+                ],
+                "description": "Send the bot a story link or forward the story itself, get the media back in the chat. Pulls directly over MTProto so quality is preserved end-to-end, with full observability and auto-cleanup of temp files.",
+                "features": [
+                    "Two input modes: story URL or forwarded story",
+                    "MTProto (Telethon) pull for maximum quality",
+                    "Aiogram 3.x async bot with clean handler separation",
+                    "SQLite + SQLAlchemy (aiosqlite) persistence for download stats",
+                    "`/stats` command exposing per-user download metrics",
+                    "Pydantic Settings for 12-factor config via `.env`"
+                ],
+                "stack": [
+                    "Python 3.12",
+                    "Aiogram 3",
+                    "Telethon",
+                    "SQLAlchemy",
+                    "aiosqlite",
+                    "Pydantic Settings"
+                ]
             }
+        ];
+
+        const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const md = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+
+        document.getElementById('project-list').innerHTML = projects.map(p => {
+            const links = (p.links || []).map(l => {
+                const ext = /^https?:/.test(l.url);
+                return `<a href="${esc(l.url)}"${ext ? ' target="_blank" rel="noopener"' : ''}>${esc(l.label)}<i data-lucide="arrow-up-right"></i></a>`;
+            }).join('');
+            const demo = p.demo ? `<div class="demo">${esc(p.demo.label)}: ${p.demo.fields.map(f => `${esc(f.k)} <code>${esc(f.v)}</code>`).join(' ')}</div>` : '';
+            const more = (p.features && p.features.length) ? `
+                <details class="more">
+                    <summary>Details<i data-lucide="chevron-down"></i></summary>
+                    <ul>${p.features.map(f => `<li>${md(f)}</li>`).join('')}</ul>
+                    ${demo}
+                </details>` : '';
+            return `
+            <article class="project">
+                <div class="p-head">
+                    <div class="p-icon"><i data-lucide="${esc(p.icon || 'box')}"></i></div>
+                    <div class="p-title">
+                        <div class="top">
+                            <h3>${esc(p.name)}${p.status ? `<span class="badge">${esc(p.status)}</span>` : ''}</h3>
+                            <span class="year">${esc(p.year || '')}</span>
+                        </div>
+                        <p class="tag">${esc(p.tagline)}</p>
+                    </div>
+                </div>
+                <div class="p-body">
+                    <p class="desc">${md(p.description)}</p>
+                    <div class="stack">${p.stack.map(esc).join(' · ')}</div>
+                    <div class="p-links">${links}${more}</div>
+                </div>
+            </article>`;
+        }).join('');
+
+        lucide.createIcons();
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const root = document.documentElement;
+        document.getElementById('theme').addEventListener('click', () => {
+            const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+            root.dataset.theme = dark ? 'light' : 'dark';
+            try { localStorage.setItem('theme', root.dataset.theme); } catch (e) { }
         });
 
-        // Initialize Native
-        document.addEventListener('DOMContentLoaded', buildUI);
+        const nav = document.getElementById('nav');
+        const onScroll = () => nav.classList.toggle('scrolled', scrollY > 8);
+        addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }), { rootMargin: '0px 0px -8% 0px' }) : null;
+        document.querySelectorAll('.reveal').forEach(el => {
+            if (!io || el.getBoundingClientRect().top < innerHeight) el.classList.add('in');
+            else io.observe(el);
+        });
+        setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+            if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in');
+        }), 400);
     </script>
 </body>
 
